@@ -33,7 +33,30 @@ curl
 
 [Example invoice payment page](https://cashlink.de/business/demolink)
 
-Invoice links can only be paid once. They are usually used as a means to offer online payment for a single order.
+Invoice links can only be paid once. They are usually used to offer online payment for a single order.
+
+## Product links
+
+> Example: Create product link
+
+```sh
+curl
+  -X POST
+  -H 'Content-Type: application/json'
+  -H 'X-Api-Key: USERKEY'
+  --data '{
+    "type": "product",
+    "amount": "12.34",
+    "subject": "Online Payments EBook"
+  }'
+  https://cashlink.de/business/api/v1/cashlink
+```
+
+[Example invoice payment page](https://cashlink.de/business/demolink)
+
+Product links are like invoice links but can be paid more than once. Use these to receive payment for products that you can sell many times.
+
+To make a purchase, payers must enter their full name and email address. You will receive this additional information in the `cashlink.paid` webhook. See [`cashlink.paid` event](#code-cashlink-paid-code-new-payment) for details.
 
 ## Recurring payments
 
@@ -56,6 +79,8 @@ curl
 [Example recurring payment page](https://cashlink.de/business/+g81C9EqWVqd8)
 
 Recurring payment links may be paid multiple times by different customers. Each time a recurring payment link is paid, the customer starts a subscription to pay the link's amount every interval (e.g. monthly).
+
+To start a subscription, payers must enter their full name and email address. You will receive this additional information in the `cashlink.paid` webhook. See [`cashlink.paid` event](#code-cashlink-paid-code-new-payment) for details.
 
 Recurring payments are restricted to the credit card and direct debit payment methods.
 
@@ -135,12 +160,19 @@ To create a payment link with a pre-allocated URL, in the create payment link re
       "subject":"Invoice no. 12345",
       "amount":"12.34",
       "amount_currency":"EUR"
+    },
+    "payer":{
+      "first_name":"Jane",
+      "last_name":"Doe",
+      "email":"jane@doe.com"
     }
   }
 }
 ```
 
 Sent when a payment has been successfully processed.
+
+The `payer` field is available for product links and recurring payments.
 
 ### Recurring payments
 

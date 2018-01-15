@@ -284,13 +284,25 @@
   https://cashlink.de/business/api/v1/...
 </code></pre>
 <p>To request an earlier version, simply include the <code>X-Api-Version</code> header set to your desired version. If no header is passed, the latest stable API version is assumed. If the endpoint does not support your desired version anymore, it fails with a 400 Bad Request.</p>
-
-<p>Available API versions:</p>
-
-<ul>
-<li>2017-10-01 (default until 2018-02-28)</li>
-<li>2018-01-15 (default from 2018-03-01)</li>
-</ul>
+<h3 id='available-api-versions'>Available API versions</h3>
+<table><thead>
+<tr>
+<th>Version</th>
+<th>forward compatible to</th>
+<th>remarks</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>2017-10-01</td>
+<td>2018-01-15</td>
+<td>default version until 2018/02/28</td>
+</tr>
+<tr>
+<td>2018-01-15</td>
+<td></td>
+<td>default version starting 2018/03/01</td>
+</tr>
+</tbody></table>
 
 <p>See the Changelog below for details on API versions.</p>
 <h2 id='error-handling'>Error handling</h2>

@@ -7,6 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Documentation</title>
 
+    <!-- Google Optimize -->
+    <style>.async-hide{opacity:0!important}</style><script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date; h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')}; (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c; })(window,document.documentElement,'async-hide','dataLayer',4000, {'GTM-P56KNPS':true});</script>
+    <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','UA-103824880-2','auto');ga('require','GTM-MTNZM2R');</script>
+    <!-- End Google Optimize -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-P56KNPS');</script>
+    <!-- End Google Tag Manager -->
+
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -202,6 +210,9 @@
   </head>
 
   <body class="payments" data-languages="[]">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P56KNPS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -216,6 +227,9 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#invoice-links" class="toc-h2 toc-link" data-title="Invoice links">Invoice links</a>
+                  </li>
+                  <li>
+                    <a href="#product-links" class="toc-h2 toc-link" data-title="Product links">Product links</a>
                   </li>
                   <li>
                     <a href="#recurring-payments" class="toc-h2 toc-link" data-title="Recurring payments">Recurring payments</a>
@@ -268,7 +282,27 @@
 </span></code></pre>
 <p><a href="https://cashlink.de/business/demolink">Example invoice payment page</a></p>
 
-<p>Invoice links can only be paid once. They are usually used as a means to offer online payment for a single order.</p>
+<p>Invoice links can only be paid once. They are usually used to offer online payment for a single order.</p>
+<h2 id='product-links'>Product links</h2>
+<blockquote>
+<p>Example: Create product link</p>
+</blockquote>
+<pre class="highlight sh tab-shell"><code>curl
+  -X POST
+  -H <span class="s1">'Content-Type: application/json'</span>
+  -H <span class="s1">'X-Api-Key: USERKEY'</span>
+  --data <span class="s1">'{
+    "type": "product",
+    "amount": "12.34",
+    "subject": "Online Payments EBook"
+  }'</span>
+  https://cashlink.de/business/api/v1/cashlink
+</code></pre>
+<p><a href="https://cashlink.de/business/demolink">Example invoice payment page</a></p>
+
+<p>Product links are like invoice links but can be paid more than once. Use these to receive payment for products that you can sell many times.</p>
+
+<p>To make a purchase, payers must enter their full name and email address. You will receive this additional information in the <code>cashlink.paid</code> webhook. See <a href="#code-cashlink-paid-code-new-payment"><code>cashlink.paid</code> event</a> for details.</p>
 <h2 id='recurring-payments'>Recurring payments</h2>
 <blockquote>
 <p>Example: Create recurring payment link</p>
@@ -288,6 +322,8 @@
 <p><a href="https://cashlink.de/business/+g81C9EqWVqd8">Example recurring payment page</a></p>
 
 <p>Recurring payment links may be paid multiple times by different customers. Each time a recurring payment link is paid, the customer starts a subscription to pay the link&#39;s amount every interval (e.g. monthly).</p>
+
+<p>To start a subscription, payers must enter their full name and email address. You will receive this additional information in the <code>cashlink.paid</code> webhook. See <a href="#code-cashlink-paid-code-new-payment"><code>cashlink.paid</code> event</a> for details.</p>
 
 <p>Recurring payments are restricted to the credit card and direct debit payment methods.</p>
 
@@ -358,11 +394,18 @@ If signup day of month is &gt; 28, then all future charges will be made on the 2
       </span><span class="s2">"subject"</span><span class="p">:</span><span class="s2">"Invoice no. 12345"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"12.34"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"amount_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"payer"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"jane@doe.com"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Sent when a payment has been successfully processed.</p>
+
+<p>The <code>payer</code> field is available for product links and recurring payments.</p>
 <h3 id='recurring-payments-2'>Recurring payments</h3>
 <p>For recurring payments, <code>cashlink.type</code> will be <code>&quot;subscription&quot;</code>, and the following extra fields will be available:</p>
 

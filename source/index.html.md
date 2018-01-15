@@ -41,10 +41,12 @@ curl
 
 To request an earlier version, simply include the `X-Api-Version` header set to your desired version. If no header is passed, the latest stable API version is assumed. If the endpoint does not support your desired version anymore, it fails with a 400 Bad Request.
 
-Available API versions:
+### Available API versions
 
-- 2017-10-01 (default until 2018-02-28)
-- 2018-01-15 (default from 2018-03-01)
+Version    | forward compatible to | remarks
+-----------|-----------------------|----------------------
+2017-10-01 | 2018-01-15            | default version until 2018/02/28
+2018-01-15 |                       | default version starting 2018/03/01
 
 See the Changelog below for details on API versions.
 

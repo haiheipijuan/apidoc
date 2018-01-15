@@ -1,0 +1,379 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Documentation</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all_nosearch.js"></script>
+  </head>
+
+  <body class="payments" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#payment-api" class="toc-h1 toc-link" data-title="Payment API">Payment API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#invoice-links" class="toc-h2 toc-link" data-title="Invoice links">Invoice links</a>
+                  </li>
+                  <li>
+                    <a href="#recurring-payments" class="toc-h2 toc-link" data-title="Recurring payments">Recurring payments</a>
+                  </li>
+                  <li>
+                    <a href="#pre-allocated-urls" class="toc-h2 toc-link" data-title="Pre-allocated URLs">Pre-allocated URLs</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#payment-notification" class="toc-h1 toc-link" data-title="Payment notification">Payment notification</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#code-cashlink-paid-code-new-payment" class="toc-h2 toc-link" data-title="<code>cashlink.paid</code> – New payment"><code>cashlink.paid</code> – New payment</a>
+                  </li>
+              </ul>
+          </li>
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='payment-api'>Payment API</h1>
+<p>With the CASHLINK Payment API you can automate creating payment links for invoices, subscriptions and products. You can also receive notification when one of your links has been paid via webhooks.</p>
+
+<p>Payment links have a unique, randomly-generated URL, for example <code>https://cashlink.de/business/+VX0GK5cvM1dO</code>. Share this URL with your customers on your website, via email, etc.  Use <code>whatsapp_url</code> when sending the link via WhatsApp. Using the default link will lead to issues with line breaks making it impossible to click the link.</p>
+<h2 id='invoice-links'>Invoice links</h2>
+<blockquote>
+<p>Example: Create invoice payment link</p>
+</blockquote>
+<pre class="highlight sh tab-shell"><code>curl
+  -X POST
+  -H <span class="s1">'Content-Type: application/json'</span>
+  -H <span class="s1">'X-Api-Key: USERKEY'</span>
+  --data <span class="s1">'{
+    "type": "invoice",
+    "amount": "12.34",
+    "subject": "Invoice no. 12345"
+  }'</span>
+  https://cashlink.de/business/api/v1/cashlink
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"public_id"</span><span class="p">:</span><span class="s2">"VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://cashlink.de/business/+VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"whatsapp_url"</span><span class="p">:</span><span class="s2">"https://cashlink.de/business/l/VX0GK5cvM1dO"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><a href="https://cashlink.de/business/demolink">Example invoice payment page</a></p>
+
+<p>Invoice links can only be paid once. They are usually used as a means to offer online payment for a single order.</p>
+<h2 id='recurring-payments'>Recurring payments</h2>
+<blockquote>
+<p>Example: Create recurring payment link</p>
+</blockquote>
+<pre class="highlight sh tab-shell"><code>curl
+  -X POST
+  -H <span class="s1">'Content-Type: application/json'</span>
+  -H <span class="s1">'X-Api-Key: USERKEY'</span>
+  --data <span class="s1">'{
+    "type": "subscription",
+    "subscription_plan": "monthly"
+    "amount": "12.34",
+    "subject": "Monthly plan",
+  }'</span>
+  https://cashlink.de/business/api/v1/cashlink
+</code></pre>
+<p><a href="https://cashlink.de/business/+g81C9EqWVqd8">Example recurring payment page</a></p>
+
+<p>Recurring payment links may be paid multiple times by different customers. Each time a recurring payment link is paid, the customer starts a subscription to pay the link&#39;s amount every interval (e.g. monthly).</p>
+
+<p>Recurring payments are restricted to the credit card and direct debit payment methods.</p>
+
+<p>Use the <code>subscription_plan</code> field to specify the payment interval. Choices:</p>
+
+<ul>
+<li><code>monthly</code>: Charge on the day someone signs up for the subscription, and then automatically charge every 4 weeks.
+Example: User signs up on 2017/11/05, then the first charge will be on 2017/11/05, and next charge will be on 2017/12/05, etc.
+If signup day of month is &gt; 28, then all future charges will be made on the 28th of the following months.</li>
+</ul>
+
+<p>(Contact CASHLINK if you need other payment intervals.)</p>
+<h2 id='pre-allocated-urls'>Pre-allocated URLs</h2>
+<blockquote>
+<p>Example: Pre-allocate payment link URL</p>
+</blockquote>
+<pre class="highlight sh tab-shell"><code>curl
+  -X POST
+  -H <span class="s1">'Content-Type: application/json'</span>
+  -H <span class="s1">'X-Api-Key: USERKEY'</span>
+  --data <span class="s1">'{}'</span>
+  https://cashlink.de/business/api/v1/cashlink-public-id
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VX0GK5cvM1dO:PygAVDcv2hFi4RqLxK3p0vs58r8"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"public_id"</span><span class="p">:</span><span class="s2">"VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://cashlink.de/business/+VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"whatsapp_url"</span><span class="p">:</span><span class="s2">"https://cashlink.de/business/l/VX0GK5cvM1dO"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>You can retrieve a payment link <code>public_id</code>/URL before actually having created the payment link with subject and amount. This can be useful if you can only know the payment link&#39;s subject or amount after stuffing the URL into some third-party system.</p>
+
+<p>To pre-allocate a payment link URL, use the following API call to retrieve a signed <code>public_id</code>/URL:</p>
+
+<p>Note that at the point of this API response, the payment link hasn&#39;t actually been created yet, so the URL is inaccessible.</p>
+
+<blockquote>
+<p>Example: Create a payment link with a pre-allocated URL</p>
+</blockquote>
+<pre class="highlight sh tab-shell"><code>curl
+  -X POST
+  -H <span class="s1">'Content-Type: application/json'</span>
+  -H <span class="s1">'X-Api-Key: USERKEY'</span>
+  --data <span class="s1">'{
+    "public_id": "VX0GK5cvM1dO:PygAVDcv2hFi4RqLxK3p0vs58r8",
+    "amount": "12.34",
+    "subject": "Invoice no. 12345"
+  }'</span>
+  https://cashlink.de/business/api/v1/cashlink
+</code></pre>
+<p>To create a payment link with a pre-allocated URL, in the create payment link request, set the <code>public_id</code> field to the <code>signature</code> value from the pre-allocation response.</p>
+<h1 id='payment-notification'>Payment notification</h1><h2 id='code-cashlink-paid-code-new-payment'><code>cashlink.paid</code> – New payment</h2>
+<blockquote>
+<p>Example: <code>cashlink.paid</code> event data</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"cashlink.paid"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="s2">"2017-10-09T13:11:03.661620"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"public_id"</span><span class="p">:</span><span class="s2">"wxnfqAVVPWwZ"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cashlink"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invoice"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"public_id"</span><span class="p">:</span><span class="s2">"VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"subject"</span><span class="p">:</span><span class="s2">"Invoice no. 12345"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"12.34"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Sent when a payment has been successfully processed.</p>
+<h3 id='recurring-payments-2'>Recurring payments</h3>
+<p>For recurring payments, <code>cashlink.type</code> will be <code>&quot;subscription&quot;</code>, and the following extra fields will be available:</p>
+
+<ul>
+<li><code>data.cashlink.next_charge</code>: scheduled next charge (<code>YYYY-MM-DDTHH:MM:SS.micro</code>)</li>
+<li><code>data.recurring_initial</code>: <code>true</code> if this was the initial payment of a subscription</li>
+</ul>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>

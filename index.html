@@ -1,0 +1,342 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>CASHLINK API documentation</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#cashlink-api-documentation" class="toc-h1 toc-link" data-title="CASHLINK API documentation">CASHLINK API documentation</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#basics" class="toc-h2 toc-link" data-title="Basics">Basics</a>
+                  </li>
+                  <li>
+                    <a href="#versioning" class="toc-h2 toc-link" data-title="Versioning">Versioning</a>
+                  </li>
+                  <li>
+                    <a href="#error-handling" class="toc-h2 toc-link" data-title="Error handling">Error handling</a>
+                  </li>
+                  <li>
+                    <a href="#events-and-webhooks" class="toc-h2 toc-link" data-title="Events and Webhooks">Events and Webhooks</a>
+                  </li>
+                  <li>
+                    <a href="#changelog" class="toc-h2 toc-link" data-title="Changelog">Changelog</a>
+                  </li>
+              </ul>
+          </li>
+      </div>
+        <ul class="toc-footer">
+            <li><a href="payments.html">Go to Payment API</a></li>
+            <li><a href="platform.html">Go to Platform API</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='cashlink-api-documentation'>CASHLINK API documentation</h1>
+<p>Parts of this documentation:</p>
+
+<ul>
+<li>This page: General information on API usage (authentication, versioning, error handling, webhooks)</li>
+<li><a href="payments.html">Payments API</a>: Create payment links and receive payment notifications.</li>
+<li><a href="platform.html">Platform API</a>: Create CASHLINK accounts on behalf of your platform&#39;s users to use with the Payments API.</li>
+</ul>
+
+<p>An access key is required to get access to the API. To get an access key, please contact CASHLINK (info@cashlink.de). The access key is referred to as &quot;USERKEY&quot; in the Payment API documentation, and &quot;APPKEY&quot; in the Platform API documentation.</p>
+<h2 id='basics'>Basics</h2>
+<p>CASHLINK provides a REST-style API (HTTPS + JSON). HTTP methods follow the REST semantics (GET to retrieve information, POST to create a new entity, PUT to add something to an existing entity, UPDATE to update an entity, DELETE to delete an entity) unless noted differently.</p>
+
+<p>Base URL for all API calls is <code>https://cashlink.de/business/api/v1/</code>.</p>
+
+<p>All requests must include the <code>X-Api-Key</code> header with an API key for authentication. (The &quot;USERKEY&quot; for creating payment links, and the &quot;APPKEY&quot; for creating new businesses as a Platform API user.)</p>
+<h2 id='versioning'>Versioning</h2>
+<p>The CASHLINK API is versioned; breaking API changes are always introduced with a version number increment. In order to ease migration, you may request that your API request be processed with the behaviour of an earlier API version, if the called endpoint supports this earlier version.</p>
+
+<blockquote>
+<p>Example: Force 2017-10-01 API version</p>
+</blockquote>
+<pre class="highlight sh tab-shell"><code>curl
+  -X POST
+  -H <span class="s2">"X-Api-Version: 2017-10-01"</span>
+  ...
+  https://cashlink.de/business/api/v1/...
+</code></pre>
+<p>To request an earlier version, simply include the <code>X-Api-Version</code> header set to your desired version. If no header is passed, the latest stable API version is assumed. If the endpoint does not support your desired version anymore, it fails with a 400 Bad Request.</p>
+
+<p>Available API versions:</p>
+
+<ul>
+<li>2017-10-01 (default until 2018-02-28)</li>
+<li>2018-01-15 (default from 2018-03-01)</li>
+</ul>
+
+<p>See the Changelog below for details on API versions.</p>
+<h2 id='error-handling'>Error handling</h2>
+<blockquote>
+<p>Example: Missing subject field</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"subject"</span><span class="p">:[</span><span class="s2">"This field is required."</span><span class="p">]}</span><span class="w">
+</span></code></pre>
+<p>If the input you provided to one of the API calls is missing or does not validate, you will get a HTTP 4xx response, along with a JSON object response body that provides detailed information on the request errors. Errors are a list of error strings.</p>
+<h2 id='events-and-webhooks'>Events and Webhooks</h2>
+<blockquote>
+<p>Example: Webhook request to your server for <code>cashlink.paid</code> event</p>
+</blockquote>
+<pre class="highlight plaintext"><code>POST /webhook/payments HTTP/1.1
+Host: yourdomain.com
+User-Agent: cashlink
+Content-Type: application/json
+Hook-Hmac: Pmwczrx6I1+KzPRYjMrB8nH3HqV+9yLlUqkrjStwbhYfX8ubffRHl38yCEKKRJfWYdFWehev6kMmZQoNCMwWnQ==
+X-Request-Id: 7518ca89-3eb1-4884-ac28-ff81531d2fd8
+...
+{
+  "event":"cashlink.paid",
+  "timestamp":"2017-10-09T13:11:03.661620",
+  "business": "VX0GK5cvM1dO",
+  "data": {
+    "public_id": "wxnfqAVVPWwZ",
+    "cashlink": {
+      "type": "invoice",
+      "public_id": "VX0GK5cvM1dO",
+      "subject": "Invoice no. 12345",
+      "amount": "12.34",
+      "amount_currency": "EUR"
+    }
+  }
+}
+</code></pre>
+<p>Get in contact with CASHLINK (info@cashlink.de) if you want to use webhooks.</p>
+
+<p>CASHLINK makes a JSON POST request to your subscription URL when an event you&#39;re subscribed to happens.</p>
+
+<p><strong>Timeouts:</strong> Webhook requests have a timeout of <strong>2 seconds</strong> and are not retried.</p>
+
+<p><strong>Platform API users:</strong> The <code>business</code> field identifies the business this event happened to. This is useful if you have the events of multiple businesses sent to the same webhook endpoint; use the <code>business</code> field to know which business is concerned in this case.</p>
+<h3 id='security'>Security</h3>
+<p>You may optionally verify the authenticity of the request using the HMAC value provided in the <em>Hook-Hmac</em> header. A request is guaranteed to be sent from CASHLINK if the following holds true:</p>
+
+<p><code>HMAC-SHA512(secret_key, request body) == base64decode(request_headers[&quot;Hook-Hmac&quot;])</code></p>
+
+<p><code>secret_key</code> is a secret value provided to you upon registration.</p>
+<h2 id='changelog'>Changelog</h2><h3 id='2018-01-15'>2018-01-15</h3>
+<ul>
+<li>Create Subscription Link: <code>type</code> field is now required and must be set to <code>&quot;subscription&quot;</code>.</li>
+</ul>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>

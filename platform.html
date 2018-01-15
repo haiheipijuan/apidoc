@@ -1,0 +1,325 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Documentation</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all_nosearch.js"></script>
+  </head>
+
+  <body class="platform" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+      <div id="toc" class="toc-list-h1">
+          <li>
+            <a href="#platform-api" class="toc-h1 toc-link" data-title="Platform API">Platform API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#registering-businesses" class="toc-h2 toc-link" data-title="Registering businesses">Registering businesses</a>
+                  </li>
+              </ul>
+          </li>
+      </div>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id='platform-api'>Platform API</h1>
+<blockquote>
+<p><sup>1</sup> Platform = an application that allows other businesses to sign up and receive payments from their customers.</p>
+</blockquote>
+
+<p>The CASHLINK Platform API provides a way for platforms<sup>1</sup> to allow users (businesses) to receive payments from their customers.</p>
+
+<p>The CASHLINK Platform API is very easy to integrate. You can start with a very lightweight integration that can be implemented in a few hour&#39;s work. A more heavyweight integration would also deal with providing business information (address, tax ID, and other legal information) upon registration, but this is entirely optional.</p>
+
+<p>Platform API requests must be made with the platform&#39;s unique APPKEY.</p>
+
+<p>Your platform receives the business&#39; USERKEY upon registration that can be used to create payment links with the <a href="payments.html">Payment API</a>. Your platform can also receive payment notification webhooks for these businesses. The <code>business</code> field in a webhook request body identifies the business an event happened to. This is useful if you have the events of multiple businesses sent to the same webhook endpoint; use the <code>business</code> field to know which business is concerned in this case.</p>
+
+<p>Business accounts registered through the Platform API are ready to receive payments immediately after registration. To receive payouts to their bank accounts, users will have to complete their legal information (see <a href="#providing-legal-information">Providing legal information</a> below). <strong>Note:</strong> For legal reasons, in order to enable the direct debit payment method (one of the most-used payment methods in Germany), users will have to complete their legal information and upload a copy of their representative&#39;s passport on the CASHLINK website before receiving their first direct debit payment.</p>
+<h2 id='registering-businesses'>Registering businesses</h2>
+<blockquote>
+<p>Example: Create a CASHLINK account for one of your platform&#39;s users</p>
+</blockquote>
+<pre class="highlight sh tab-shell"><code>curl
+  -X POST
+  -H <span class="s1">'Content-Type: application/json'</span>
+  -H <span class="s1">'X-Api-Key: XXXXXXXX'</span>
+  --data <span class="s1">'{
+    "email": "jane@doe.com",
+    "business_name": "Jane Doe Ltd.",
+    "password": "janes secret password (optional)"
+  }'</span>
+  https://cashlink.de/business/api/v1/register/
+</code></pre>
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"public_id"</span><span class="p">:</span><span class="s2">"VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"api_key"</span><span class="p">:</span><span class="s2">"0fkX3z38jPAEYAuceVRAwksNqCTyQxx7TckHRmPD"</span><span class="w">
+              </span><span class="err">^</span><span class="w"> </span><span class="err">This</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">new</span><span class="w"> </span><span class="err">account's</span><span class="w"> </span><span class="err">USERKEY</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>At the most basic level you can sign up businesses with only their <code>business_name</code> (e.g., <em>Jane Doe Ltd.</em>) and an <code>email</code> address that will be their username (e.g. <em>jane@doe.com</em>). This will give you an API key for the new user, which you will use for performing further actions on the business&#39; behalf. You should store the API key in your app or database.</p>
+
+<p>If you also provide the optional <code>password</code> field, these users will also be able to log in on the CASHLINK website to see their payments etc. If you don&#39;t provide a password, users need to go through the &quot;Forgot Password&quot; procedure on the CASHLINK website to log in.</p>
+
+<p>The business <code>public_id</code> is a unique identifier for the newly created business. If you&#39;re using webhooks, this identifier will be contained in every event concerning that business (see &quot;Events and Webhooks&quot; for details).</p>
+
+<p>The <code>api_key</code> value will be used for authenticating the business in other API actions, like creating a payment link.</p>
+<h3 id='terms-and-conditions'>Terms and conditions</h3>
+<p>Every business must accept the terms and conditions of CASHLINK prior to signing up for the service.  You may include text along the following lines in your onboarding form:</p>
+
+<p>By clicking on the button you agree to the <a href="https://cashlink.io/terms-business">Terms and Conditions for Businesses</a> and <a href="https://cashlink.io/privacy">privacy policy</a> of CASHLINK.</p>
+
+<p>Mit Klick auf den Button stimmen Sie den <a href="https://cashlink.de/business/terms-business">AGB für Unternehmen</a> und <a href="https://cashlink.de/business/privacy">Datenschutzbestimmungen</a> der CASHLINK Payments GmbH zu.</p>
+<h3 id='providing-legal-information'>Providing legal information</h3><pre class="highlight sh tab-shell"><code>curl
+  -X POST
+  -H <span class="s1">'Content-Type: application/json'</span>
+  -H <span class="s1">'X-Api-Key: APPKEY'</span>
+  --data <span class="s1">'{
+    "business_type": "company",
+    "owner_first_name": "Jane",
+    "owner_last_name": "Doe",
+    "owner_street": "Jane Street",
+    "owner_street_number": "1A",
+    "owner_zipcode": "12345",
+    "owner_city": "Jane City",
+    "owner_birthday": "1990-01-01",
+    "payout_account": "DE12500105170648489890",
+    "email": "info@janedoe.com",
+    "password": "janes secret password (optional)",
+    "business_name": "Jane Doe Ltd.",
+    "business_tax_id": "999999",
+    "business_street": "Company street (companies only)",
+    "business_street_number": "5 (companies only)",
+    "business_zipcode": "23456 (companies only)",
+    "business_city": "Company city (companies only)",
+    "webhook_url": "https://yourdomain.com/webhook/payments"
+  }'</span>
+  https://cashlink.de/business/api/v1/register
+</code></pre>
+<p>To complete the sign-up, every business has to provide a bunch of business-related information. This includes the business address, tax ID, information about a business owner or president, the payout account, etc.</p>
+
+<p>Information not provided when creating the account will have to be provided by your users on the CASHLINK website after receiving their first payment. (Note that this also means users will have to be able to log in to the CASHLINK website, so you&#39;ll have to send them their CASHLINK password or give them instructions on how to reset their password.)</p>
+
+<p>If your application already has your user&#39;s business&#39; information, we recommend you pass that information to the CASHLINK API in the registration API call.</p>
+
+<p><strong>Note:</strong></p>
+
+<ul>
+<li><code>business_type</code> must be one of <code>individual</code> or <code>company</code>. For companies, both the owner&#39;s/representative&#39;s address and the company address will have to be provided by the platform or the company in order to receive payments.</li>
+<li><code>email</code> address must be unique.</li>
+<li><code>business_phone_number</code> may be in various formats, including &quot;069 / 12345&quot;, &quot;069 12345&quot;, &quot;+49 69 12345&quot;, etc.</li>
+<li>If <code>password</code> is omitted, the account must reset their password before logging in to the CASHLINK site.</li>
+<li>If the optional <code>webhook_url</code> is given, an HTTP request will be sent to this URL for any events related to that business happen (e.g., new successful payments). If you set the <code>webhook_url</code> field, the response will include a &quot;secret&quot; value. This value is used to verify the webhook signature. See &quot;Events and Webhooks&quot; for details. </li>
+</ul>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>

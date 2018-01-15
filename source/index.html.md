@@ -43,10 +43,10 @@ To request an earlier version, simply include the `X-Api-Version` header set to 
 
 ### Available API versions
 
-Version    | forward compatible to | remarks
+Version    | Forward compatible to | Remarks
 -----------|-----------------------|----------------------
-2017-10-01 | 2018-01-15            | default version until 2018/02/28
 2018-01-15 |                       | default version starting 2018/03/01
+2017-10-01 | 2018-01-15            | default version until 2018/02/28
 
 See the Changelog below for details on API versions.
 
@@ -109,4 +109,5 @@ You may optionally verify the authenticity of the request using the HMAC value p
 
 ### 2018-01-15
 
-- Create Subscription Link: `type` field is now required and must be set to `"subscription"`.
+- The `type` field is now required and must be one of `"invoice"`, `"subscription"`, or `"product"`.
+  This is forward compatible to version 2017-10-01: You can start using the `type` field today.

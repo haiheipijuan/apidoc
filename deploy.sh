@@ -13,7 +13,7 @@ mv build $TMPDIR/apidoc-build
 git rm -r .
 mv $TMPDIR/apidoc-build/* .
 git add .
-git diff --staged --exit-code >/dev/null || git commit -am Build
+git diff --staged --exit-code >/dev/null || git commit -am "Build `git log --pretty=format:"%h %s" master | head -n 1`"
 git pull --rebase origin gh-pages
 git push origin gh-pages
 git checkout master

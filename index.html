@@ -288,19 +288,19 @@
 <table><thead>
 <tr>
 <th>Version</th>
-<th>forward compatible to</th>
-<th>remarks</th>
+<th>Forward compatible to</th>
+<th>Remarks</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>2017-10-01</td>
-<td>2018-01-15</td>
-<td>default version until 2018/02/28</td>
-</tr>
 <tr>
 <td>2018-01-15</td>
 <td></td>
 <td>default version starting 2018/03/01</td>
+</tr>
+<tr>
+<td>2017-10-01</td>
+<td>2018-01-15</td>
+<td>default version until 2018/02/28</td>
 </tr>
 </tbody></table>
 
@@ -354,7 +354,8 @@ X-Request-Id: 7518ca89-3eb1-4884-ac28-ff81531d2fd8
 <p><code>secret_key</code> is a secret value provided to you upon registration.</p>
 <h2 id='changelog'>Changelog</h2><h3 id='2018-01-15'>2018-01-15</h3>
 <ul>
-<li>Create Subscription Link: <code>type</code> field is now required and must be set to <code>&quot;subscription&quot;</code>.</li>
+<li>The <code>type</code> field is now required and must be one of <code>&quot;invoice&quot;</code>, <code>&quot;subscription&quot;</code>, or <code>&quot;product&quot;</code>.
+This is forward compatible to version 2017-10-01: You can start using the <code>type</code> field today.</li>
 </ul>
 
       </div>

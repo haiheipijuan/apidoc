@@ -27,5 +27,3 @@ Deploy to GitHub Pages using:
 ```
 ./deploy.sh
 ```
-
-Note that we currently have a CloudFront CDN sitting in front of GitHub Pages so that we can host it on https://docs.cashlink.io.

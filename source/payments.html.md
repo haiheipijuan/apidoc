@@ -52,7 +52,7 @@ curl
   https://cashlink.de/business/api/v1/cashlink
 ```
 
-[Example invoice payment page](https://cashlink.de/business/demolink)
+[Example product payment page](https://cashlink.de/business/+FaHc8AKUGnmP)
 
 Product links are like invoice links but can be paid more than once. Use these to receive payment for products that you can sell many times.
 

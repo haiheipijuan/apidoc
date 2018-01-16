@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Documentation</title>
+    <title>CASHLINK Platform API</title>
 
     <!-- Google Optimize -->
     <style>.async-hide{opacity:0!important}</style><script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date; h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')}; (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c; })(window,document.documentElement,'async-hide','dataLayer',4000, {'GTM-P56KNPS':true});</script>
@@ -206,7 +206,7 @@
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all_nosearch.js"></script>
+      <script src="javascripts/all.js"></script>
   </head>
 
   <body class="platform" data-languages="[]">
@@ -220,7 +220,13 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo.png" class="logo" alt="Logo" />
+      <a href="https://docs.cashlink.io">
+        <img src="images/logo.png" class="logo" alt="Logo" />
+      </a>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
             <a href="#platform-api" class="toc-h1 toc-link" data-title="Platform API">Platform API</a>
@@ -231,6 +237,10 @@
               </ul>
           </li>
       </div>
+        <ul class="toc-footer">
+            <li><a href="index.html">Go to Home</a></li>
+            <li><a href="payments.html">Go to Payment API</a></li>
+        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>

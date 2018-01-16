@@ -1,6 +1,6 @@
 <?php
 
-$secret_key = 'very secret';
+$secret_key = 'very secret'; // You will receive your actual secret key from CASHLINK support.
 
 $request_body = file_get_contents('php://input');
 

@@ -1,3 +1,12 @@
+---
+title: CASHLINK Payment API
+
+toc_footers:
+- <a href="index.html">Go to Home</a>
+- <a href="platform.html">Go to Platform API</a>
+
+search: true
+---
 # Payment API
 
 With the CASHLINK Payment API you can automate creating payment links for invoices, subscriptions and products. You can also receive notification when one of your links has been paid via webhooks.

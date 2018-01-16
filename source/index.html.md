@@ -93,7 +93,7 @@ Get in contact with CASHLINK (info@cashlink.de) if you want to use webhooks.
 
 CASHLINK makes a JSON POST request to your subscription URL when an event you're subscribed to happens.
 
-**Integration examples:** See https://github.com/cashlink/apidoc/tree/master/examples
+**Integration examples:** See [https://github.com/cashlink/apidoc/tree/master/examples](https://github.com/cashlink/apidoc/tree/master/examples)
 
 **Timeouts:** Webhook requests have a timeout of **2 seconds** and are not retried.
 

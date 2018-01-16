@@ -1,3 +1,12 @@
+---
+title: CASHLINK Platform API
+
+toc_footers:
+- <a href="index.html">Go to Home</a>
+- <a href="payments.html">Go to Payment API</a>
+
+search: true
+---
 # Platform API
 
 > <sup>1</sup> Platform = an application that allows other businesses to sign up and receive payments from their customers.

@@ -69,7 +69,7 @@ POST /webhook/payments HTTP/1.1
 Host: yourdomain.com
 User-Agent: cashlink
 Content-Type: application/json
-Hook-Hmac: Pmwczrx6I1+KzPRYjMrB8nH3HqV+9yLlUqkrjStwbhYfX8ubffRHl38yCEKKRJfWYdFWehev6kMmZQoNCMwWnQ==
+Hook-Hmac: Pmwczrx6I1+KzPRYjMrB8nH3Hq[...]
 X-Request-Id: 7518ca89-3eb1-4884-ac28-ff81531d2fd8
 ...
 {
@@ -92,6 +92,8 @@ X-Request-Id: 7518ca89-3eb1-4884-ac28-ff81531d2fd8
 Get in contact with CASHLINK (info@cashlink.de) if you want to use webhooks.
 
 CASHLINK makes a JSON POST request to your subscription URL when an event you're subscribed to happens.
+
+**Integration examples:** See https://github.com/cashlink/apidoc/tree/master/examples
 
 **Timeouts:** Webhook requests have a timeout of **2 seconds** and are not retried.
 

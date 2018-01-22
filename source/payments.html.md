@@ -13,6 +13,10 @@ With the CASHLINK Payment API you can automate creating payment links for invoic
 
 Payment links have a unique, randomly-generated URL, for example `https://cashlink.de/business/+VX0GK5cvM1dO`. Share this URL with your customers on your website, via email, etc.  Use `whatsapp_url` when sending the link via WhatsApp. Using the default link will lead to issues with line breaks making it impossible to click the link.
 
+## Test IBAN
+
+You can test your payment integration with the test IBAN `DE89370400440532013000`. Payments from this IBAN will immediately succeed. Please note that with non-test IBANs, payments may take longer to process, so do not rely on real payments being confirmed immediately.
+
 ## Invoice links
 
 > Example: Create invoice payment link

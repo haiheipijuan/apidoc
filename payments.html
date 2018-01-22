@@ -232,6 +232,9 @@
             <a href="#payment-api" class="toc-h1 toc-link" data-title="Payment API">Payment API</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#test-iban" class="toc-h2 toc-link" data-title="Test IBAN">Test IBAN</a>
+                  </li>
+                  <li>
                     <a href="#invoice-links" class="toc-h2 toc-link" data-title="Invoice links">Invoice links</a>
                   </li>
                   <li>
@@ -266,6 +269,8 @@
 <p>With the CASHLINK Payment API you can automate creating payment links for invoices, subscriptions and products. You can also receive notification when one of your links has been paid via webhooks.</p>
 
 <p>Payment links have a unique, randomly-generated URL, for example <code>https://cashlink.de/business/+VX0GK5cvM1dO</code>. Share this URL with your customers on your website, via email, etc.  Use <code>whatsapp_url</code> when sending the link via WhatsApp. Using the default link will lead to issues with line breaks making it impossible to click the link.</p>
+<h2 id='test-iban'>Test IBAN</h2>
+<p>You can test your payment integration with the test IBAN <code>DE89370400440532013000</code>. Payments from this IBAN will immediately succeed. Please note that with non-test IBANs, payments may take longer to process, so do not rely on real payments being confirmed immediately.</p>
 <h2 id='invoice-links'>Invoice links</h2>
 <blockquote>
 <p>Example: Create invoice payment link</p>

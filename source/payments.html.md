@@ -38,9 +38,9 @@ curl
 
 ```json
 {
-  "public_id":"VX0GK5cvM1dO",
-  "url":"https://cashlink.de/business/+VX0GK5cvM1dO",
-  "whatsapp_url":"https://cashlink.de/business/l/VX0GK5cvM1dO"
+  "public_id": "VX0GK5cvM1dO",
+  "url": "https://cashlink.de/business/+VX0GK5cvM1dO",
+  "whatsapp_url": "https://cashlink.de/business/l/VX0GK5cvM1dO"
 }
 ```
 
@@ -123,9 +123,9 @@ curl
 ```json
 {
   "signature": "VX0GK5cvM1dO:PygAVDcv2hFi4RqLxK3p0vs58r8",
-  "public_id":"VX0GK5cvM1dO",
-  "url":"https://cashlink.de/business/+VX0GK5cvM1dO",
-  "whatsapp_url":"https://cashlink.de/business/l/VX0GK5cvM1dO"
+  "public_id": "VX0GK5cvM1dO",
+  "url": "https://cashlink.de/business/+VX0GK5cvM1dO",
+  "whatsapp_url": "https://cashlink.de/business/l/VX0GK5cvM1dO"
 }
 ```
 
@@ -162,28 +162,31 @@ To create a payment link with a pre-allocated URL, in the create payment link re
 
 ```json
 {
-  "event":"cashlink.paid",
-  "timestamp":"2017-10-09T13:11:03.661620",
+  "event": "cashlink.paid",
+  "timestamp": "2017-10-09T13:11:03.661620",
   "business": "VX0GK5cvM1dO",
-  "data":{
-    "public_id":"wxnfqAVVPWwZ",
-    "cashlink":{
+  "data": {
+    "is_test": false,
+    "public_id": "wxnfqAVVPWwZ",
+    "cashlink": {
       "type": "invoice",
-      "public_id":"VX0GK5cvM1dO",
-      "subject":"Invoice no. 12345",
-      "amount":"12.34",
-      "amount_currency":"EUR"
+      "public_id": "VX0GK5cvM1dO",
+      "subject": "Invoice no. 12345",
+      "amount": "12.34",
+      "amount_currency": "EUR"
     },
-    "payer":{
-      "first_name":"Jane",
-      "last_name":"Doe",
-      "email":"jane@doe.com"
+    "payer": {
+      "first_name": "Jane",
+      "last_name": "Doe",
+      "email": "jane@doe.com"
     }
   }
 }
 ```
 
 Sent when a payment has been successfully processed.
+
+Test IBAN payments will have `is_test` set to true.
 
 The `payer` field is available for product links and recurring payments.
 

@@ -55,7 +55,7 @@ See the Changelog below for details on API versions.
 > Example: Missing subject field
 
 ```json
-{"subject":["This field is required."]}
+{"subject": ["This field is required."]}
 ```
 
 If the input you provided to one of the API calls is missing or does not validate, you will get a HTTP 4xx response, along with a JSON object response body that provides detailed information on the request errors. Errors are a list of error strings.
@@ -73,10 +73,11 @@ Hook-Hmac: Pmwczrx6I1+KzPRYjMrB8nH3Hq[...]
 X-Request-Id: 7518ca89-3eb1-4884-ac28-ff81531d2fd8
 ...
 {
-  "event":"cashlink.paid",
-  "timestamp":"2017-10-09T13:11:03.661620",
+  "event": "cashlink.paid",
+  "timestamp": "2017-10-09T13:11:03.661620",
   "business": "VX0GK5cvM1dO",
   "data": {
+    "is_test": false,
     "public_id": "wxnfqAVVPWwZ",
     "cashlink": {
       "type": "invoice",

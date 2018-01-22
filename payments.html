@@ -290,9 +290,9 @@
 <p>Response:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"public_id"</span><span class="p">:</span><span class="s2">"VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://cashlink.de/business/+VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"whatsapp_url"</span><span class="p">:</span><span class="s2">"https://cashlink.de/business/l/VX0GK5cvM1dO"</span><span class="w">
+  </span><span class="s2">"public_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cashlink.de/business/+VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"whatsapp_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cashlink.de/business/l/VX0GK5cvM1dO"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p><a href="https://cashlink.de/business/demolink">Example invoice payment page</a></p>
@@ -367,9 +367,9 @@ If signup day of month is &gt; 28, then all future charges will be made on the 2
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VX0GK5cvM1dO:PygAVDcv2hFi4RqLxK3p0vs58r8"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"public_id"</span><span class="p">:</span><span class="s2">"VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"url"</span><span class="p">:</span><span class="s2">"https://cashlink.de/business/+VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"whatsapp_url"</span><span class="p">:</span><span class="s2">"https://cashlink.de/business/l/VX0GK5cvM1dO"</span><span class="w">
+  </span><span class="s2">"public_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cashlink.de/business/+VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"whatsapp_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cashlink.de/business/l/VX0GK5cvM1dO"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>You can retrieve a payment link <code>public_id</code>/URL before actually having created the payment link with subject and amount. This can be useful if you can only know the payment link&#39;s subject or amount after stuffing the URL into some third-party system.</p>
@@ -398,27 +398,30 @@ If signup day of month is &gt; 28, then all future charges will be made on the 2
 <p>Example: <code>cashlink.paid</code> event data</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"event"</span><span class="p">:</span><span class="s2">"cashlink.paid"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="s2">"2017-10-09T13:11:03.661620"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cashlink.paid"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-09T13:11:03.661620"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"business"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:{</span><span class="w">
-    </span><span class="s2">"public_id"</span><span class="p">:</span><span class="s2">"wxnfqAVVPWwZ"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cashlink"</span><span class="p">:{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"is_test"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"public_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wxnfqAVVPWwZ"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cashlink"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invoice"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"public_id"</span><span class="p">:</span><span class="s2">"VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"subject"</span><span class="p">:</span><span class="s2">"Invoice no. 12345"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="s2">"12.34"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"amount_currency"</span><span class="p">:</span><span class="s2">"EUR"</span><span class="w">
+      </span><span class="s2">"public_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invoice no. 12345"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.34"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"payer"</span><span class="p">:{</span><span class="w">
-      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"jane@doe.com"</span><span class="w">
+    </span><span class="s2">"payer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jane@doe.com"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Sent when a payment has been successfully processed.</p>
+
+<p>Test IBAN payments will have <code>is_test</code> set to true.</p>
 
 <p>The <code>payer</code> field is available for product links and recurring payments.</p>
 <h3 id='recurring-payments-2'>Recurring payments</h3>

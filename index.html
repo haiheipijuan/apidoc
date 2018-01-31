@@ -241,6 +241,9 @@
                     <a href="#error-handling" class="toc-h2 toc-link" data-title="Error handling">Error handling</a>
                   </li>
                   <li>
+                    <a href="#test-mode" class="toc-h2 toc-link" data-title="Test Mode">Test Mode</a>
+                  </li>
+                  <li>
                     <a href="#events-and-webhooks" class="toc-h2 toc-link" data-title="Events and Webhooks">Events and Webhooks</a>
                   </li>
                   <li>
@@ -314,6 +317,15 @@
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"This field is required."</span><span class="p">]}</span><span class="w">
 </span></code></pre>
 <p>If the input you provided to one of the API calls is missing or does not validate, you will get a HTTP 4xx response, along with a JSON object response body that provides detailed information on the request errors. Errors are a list of error strings.</p>
+<h2 id='test-mode'>Test Mode</h2>
+<p>By default your API key will be in &quot;test mode.&quot; You can use test mode to safely develop and test your integration.  Differences between production mode and test mode:</p>
+
+<ul>
+<li>Payments: Payments will only be possible from a test IBAN and will not be charged. See <a href="payments.html#test-mode">Payment API: Test Mode</a> for details.</li>
+<li>Platform: Businesses created will not be sent to the PSP. See <a href="platform.html#test-mode">Platform API: Test Mode</a> for details.</li>
+</ul>
+
+<p>Please get in contact when your integration is ready so we can switch your API key to production mode. We can also provide you with a separate production API key if that&#39;s easier for you.</p>
 <h2 id='events-and-webhooks'>Events and Webhooks</h2>
 <blockquote>
 <p>Example: Webhook request to your server for <code>cashlink.paid</code> event</p>

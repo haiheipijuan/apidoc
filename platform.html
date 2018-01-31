@@ -232,6 +232,9 @@
             <a href="#platform-api" class="toc-h1 toc-link" data-title="Platform API">Platform API</a>
               <ul class="toc-list-h2">
                   <li>
+                    <a href="#test-mode" class="toc-h2 toc-link" data-title="Test Mode">Test Mode</a>
+                  </li>
+                  <li>
                     <a href="#registering-businesses" class="toc-h2 toc-link" data-title="Registering businesses">Registering businesses</a>
                   </li>
               </ul>
@@ -259,6 +262,8 @@
 <p>Your platform receives the business&#39; USERKEY upon registration that can be used to create payment links with the <a href="payments.html">Payment API</a>. Your platform can also receive payment notification webhooks for these businesses. The <code>business</code> field in a webhook request body identifies the business an event happened to. This is useful if you have the events of multiple businesses sent to the same webhook endpoint; use the <code>business</code> field to know which business is concerned in this case.</p>
 
 <p>Business accounts registered through the Platform API are ready to receive payments immediately after registration. To receive payouts to their bank accounts, users will have to complete their legal information (see <a href="#providing-legal-information">Providing legal information</a> below). <strong>Note:</strong> For legal reasons, in order to enable the direct debit payment method (one of the most-used payment methods in Germany), users will have to complete their legal information and upload a copy of their representative&#39;s passport on the CASHLINK website before receiving their first direct debit payment.</p>
+<h2 id='test-mode'>Test Mode</h2>
+<p>In test mode any businesses created with the Platform API will not be created at our Payment Service Providers. Businesses registered in test mode can not receive real payments even after switching to production mode.  Payments will only be possible from a test IBAN and will not be charged. See <a href="payments.html#test-mode">Payment API: Test Mode</a> for details.</p>
 <h2 id='registering-businesses'>Registering businesses</h2>
 <blockquote>
 <p>Example: Create a CASHLINK account for one of your platform&#39;s users</p>

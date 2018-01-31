@@ -67,6 +67,8 @@ By default your API key will be in "test mode." You can use test mode to safely 
 - Payments: Payments will only be possible from a test IBAN and will not be charged. See [Payment API: Test Mode](/payments.html#test-mode) for details.
 - Platform: Businesses created will not be sent to the PSP. See [Platform API: Test Mode](/platform.html#test-mode) for details.
 
+Please get in contact when your integration is ready so we can switch your API key to production mode. We can also provide you with a separate production API key if that's easier for you.
+
 ## Events and Webhooks
 
 > Example: Webhook request to your server for `cashlink.paid` event

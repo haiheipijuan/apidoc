@@ -164,7 +164,7 @@ To create a payment link with a pre-allocated URL, in the create payment link re
 {
   "event": "cashlink.paid",
   "timestamp": "2017-10-09T13:11:03.661620",
-  "business": "VX0GK5cvM1dO",
+  "business": "utqztAwTcQKB",
   "data": {
     "is_test": false,
     "public_id": "wxnfqAVVPWwZ",
@@ -189,6 +189,8 @@ Sent when a payment has been successfully processed.
 Test IBAN payments will have `is_test` set to true.
 
 The `payer` field is available for product links and recurring payments.
+
+Note that in the example, `"wxnfqAVVPWwZ"` is the payment public ID, and `"VX0GK5cvM1dO"` is the payment link public ID.
 
 ### Recurring payments
 

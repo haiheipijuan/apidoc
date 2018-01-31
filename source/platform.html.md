@@ -43,7 +43,7 @@ curl
 
 ```json
 {
-  "public_id":"VX0GK5cvM1dO",
+  "public_id":"utqztAwTcQKB",
   "api_key":"0fkX3z38jPAEYAuceVRAwksNqCTyQxx7TckHRmPD"
               ^ This is the new account's USERKEY
 }

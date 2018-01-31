@@ -21,6 +21,10 @@ Your platform receives the business' USERKEY upon registration that can be used 
 
 Business accounts registered through the Platform API are ready to receive payments immediately after registration. To receive payouts to their bank accounts, users will have to complete their legal information (see [Providing legal information](#providing-legal-information) below). **Note:** For legal reasons, in order to enable the direct debit payment method (one of the most-used payment methods in Germany), users will have to complete their legal information and upload a copy of their representative's passport on the CASHLINK website before receiving their first direct debit payment.
 
+## Test Mode
+
+In test mode any businesses created with the Platform API will not be created at our Payment Service Providers. Businesses registered in test mode can not receive real payments even after switching to production mode.  Payments will only be possible from a test IBAN and will not be charged. See [Payment API: Test Mode](/payments.html#test-mode) for details.
+
 ## Registering businesses
 
 

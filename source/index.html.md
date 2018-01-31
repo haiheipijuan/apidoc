@@ -60,6 +60,13 @@ See the Changelog below for details on API versions.
 
 If the input you provided to one of the API calls is missing or does not validate, you will get a HTTP 4xx response, along with a JSON object response body that provides detailed information on the request errors. Errors are a list of error strings.
 
+## Test Mode
+
+By default your API key will be in "test mode." You can use test mode to safely develop and test your integration.  Differences between production mode and test mode:
+
+- Payments: Payments will only be possible from a test IBAN and will not be charged. See [Payment API: Test Mode](/payments.html#test-mode) for details.
+- Platform: Businesses created will not be sent to the PSP. See [Platform API: Test Mode](/platform.html#test-mode) for details.
+
 ## Events and Webhooks
 
 > Example: Webhook request to your server for `cashlink.paid` event

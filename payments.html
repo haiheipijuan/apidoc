@@ -252,7 +252,7 @@
             <a href="#payment-notification" class="toc-h1 toc-link" data-title="Payment notification">Payment notification</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#code-cashlink-paid-code-new-payment" class="toc-h2 toc-link" data-title="<code>cashlink.paid</code> – New payment"><code>cashlink.paid</code> – New payment</a>
+                    <a href="#cashlink-paid-new-payment" class="toc-h2 toc-link" data-title="<code>cashlink.paid</code> – New payment"><code>cashlink.paid</code> – New payment</a>
                   </li>
               </ul>
           </li>
@@ -393,14 +393,14 @@ If signup day of month is &gt; 28, then all future charges will be made on the 2
   https://cashlink.de/business/api/v1/cashlink
 </code></pre>
 <p>To create a payment link with a pre-allocated URL, in the create payment link request, set the <code>public_id</code> field to the <code>signature</code> value from the pre-allocation response.</p>
-<h1 id='payment-notification'>Payment notification</h1><h2 id='code-cashlink-paid-code-new-payment'><code>cashlink.paid</code> – New payment</h2>
+<h1 id='payment-notification'>Payment notification</h1><h2 id='cashlink-paid-new-payment'><code>cashlink.paid</code> – New payment</h2>
 <blockquote>
 <p>Example: <code>cashlink.paid</code> event data</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cashlink.paid"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-09T13:11:03.661620"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"business"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"business"</span><span class="p">:</span><span class="w"> </span><span class="s2">"utqztAwTcQKB"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"is_test"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="s2">"public_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wxnfqAVVPWwZ"</span><span class="p">,</span><span class="w">
@@ -424,6 +424,8 @@ If signup day of month is &gt; 28, then all future charges will be made on the 2
 <p>Test IBAN payments will have <code>is_test</code> set to true.</p>
 
 <p>The <code>payer</code> field is available for product links and recurring payments.</p>
+
+<p>Note that in the example, <code>&quot;wxnfqAVVPWwZ&quot;</code> is the payment public ID, and <code>&quot;VX0GK5cvM1dO&quot;</code> is the payment link public ID.</p>
 <h3 id='recurring-payments-2'>Recurring payments</h3>
 <p>For recurring payments, <code>cashlink.type</code> will be <code>&quot;subscription&quot;</code>, and the following extra fields will be available:</p>
 

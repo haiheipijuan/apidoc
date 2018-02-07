@@ -290,6 +290,8 @@
 </span></code></pre>
 <p>At the most basic level you can sign up businesses with only their <code>business_name</code> (e.g., <em>Jane Doe Ltd.</em>) and an <code>email</code> address that will be their username (e.g. <em>jane@doe.com</em>). This will give you an API key for the new user, which you will use for performing further actions on the business&#39; behalf. You should store the API key in your app or database.</p>
 
+<p>For legal reasons, you must only register email addresses that you have verified valid and whose owners explicitly confirmed they are okay with receiving email from CASHLINK.</p>
+
 <p>If you also provide the optional <code>password</code> field, these users will also be able to log in on the CASHLINK website to see their payments etc. If you don&#39;t provide a password, users need to go through the &quot;Forgot Password&quot; procedure on the CASHLINK website to log in.</p>
 
 <p>The business <code>public_id</code> is a unique identifier for the newly created business. If you&#39;re using webhooks, this identifier will be contained in every event concerning that business (see &quot;Events and Webhooks&quot; for details).</p>
@@ -323,6 +325,7 @@
     "business_street_number": "5 (companies only)",
     "business_zipcode": "23456 (companies only)",
     "business_city": "Company city (companies only)",
+    "business_phone_number": "069 12345 (other formats OK)",
     "webhook_url": "https://yourdomain.com/webhook/payments"
   }'</span>
   https://cashlink.de/business/api/v1/register

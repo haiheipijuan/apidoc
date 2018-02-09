@@ -117,6 +117,8 @@ You may optionally verify the authenticity of the request using the HMAC value p
 
 `secret_key` is a secret value provided to you upon registration.
 
+Note that for optimal security you should use constant-time comparison instead of your programming language's default `==` operator in order to be protected from [timing attacks](https://en.wikipedia.org/wiki/Timing_attack).
+
 ## Changelog
 
 ### 2018-01-15

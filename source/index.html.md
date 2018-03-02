@@ -45,8 +45,8 @@ To request an earlier version, simply include the `X-Api-Version` header set to 
 
 Version    | Forward compatible to | Remarks
 -----------|-----------------------|----------------------
-2018-01-15 |                       | default version starting 2018/03/01
-2017-10-01 | 2018-01-15            | default version until 2018/02/28
+2018-01-15 |                       | default version starting 2018/05/01
+2017-10-01 | 2018-01-15            | default version until 2018/04/30
 
 See the Changelog below for details on API versions.
 

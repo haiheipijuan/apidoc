@@ -300,12 +300,12 @@
 <tr>
 <td>2018-01-15</td>
 <td></td>
-<td>default version starting 2018/03/01</td>
+<td>default version starting 2018/05/01</td>
 </tr>
 <tr>
 <td>2017-10-01</td>
 <td>2018-01-15</td>
-<td>default version until 2018/02/28</td>
+<td>default version until 2018/04/30</td>
 </tr>
 </tbody></table>
 
@@ -369,6 +369,8 @@ X-Request-Id: 7518ca89-3eb1-4884-ac28-ff81531d2fd8
 <p><code>HMAC-SHA512(secret_key, request body) == base64decode(request_headers[&quot;Hook-Hmac&quot;])</code></p>
 
 <p><code>secret_key</code> is a secret value provided to you upon registration.</p>
+
+<p>Note that for optimal security you should use constant-time comparison instead of your programming language&#39;s default <code>==</code> operator in order to be protected from <a href="https://en.wikipedia.org/wiki/Timing_attack">timing attacks</a>.</p>
 <h2 id='changelog'>Changelog</h2><h3 id='2018-01-15'>2018-01-15</h3>
 <ul>
 <li>The <code>type</code> field is now required and must be one of <code>&quot;invoice&quot;</code>, <code>&quot;subscription&quot;</code>, or <code>&quot;product&quot;</code>.

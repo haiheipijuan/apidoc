@@ -244,6 +244,9 @@
                     <a href="#recurring-payments" class="toc-h2 toc-link" data-title="Recurring payments">Recurring payments</a>
                   </li>
                   <li>
+                    <a href="#asking-for-customer-details" class="toc-h2 toc-link" data-title="Asking for customer details">Asking for customer details</a>
+                  </li>
+                  <li>
                     <a href="#pre-allocated-urls" class="toc-h2 toc-link" data-title="Pre-allocated URLs">Pre-allocated URLs</a>
                   </li>
               </ul>
@@ -317,7 +320,7 @@
 
 <p>Product links are like invoice links but can be paid more than once. Use these to receive payment for products that you can sell many times.</p>
 
-<p>To make a purchase, payers must enter their full name and email address. You will receive this additional information in the <code>cashlink.paid</code> webhook. See <a href="#code-cashlink-paid-code-new-payment"><code>cashlink.paid</code> event</a> for details.</p>
+<p>To make a purchase, payers must enter their full name and email address. You will receive this additional information in the <code>cashlink.paid</code> webhook. See <a href="#cashlink-paid-new-payment"><code>cashlink.paid</code> event</a> for details.</p>
 <h2 id='recurring-payments'>Recurring payments</h2>
 <blockquote>
 <p>Example: Create recurring payment link</p>
@@ -338,7 +341,7 @@
 
 <p>Recurring payment links may be paid multiple times by different customers. Each time a recurring payment link is paid, the customer starts a subscription to pay the link&#39;s amount every interval (e.g. monthly).</p>
 
-<p>To start a subscription, payers must enter their full name and email address. You will receive this additional information in the <code>cashlink.paid</code> webhook. See <a href="#code-cashlink-paid-code-new-payment"><code>cashlink.paid</code> event</a> for details.</p>
+<p>To start a subscription, payers must enter their full name and email address. You will receive this additional information in the <code>cashlink.paid</code> webhook. See <a href="#cashlink-paid-new-payment"><code>cashlink.paid</code> event</a> for details.</p>
 
 <p>Recurring payments are restricted to the credit card and direct debit payment methods.</p>
 
@@ -351,6 +354,47 @@ If signup day of month is &gt; 28, then all future charges will be made on the 2
 </ul>
 
 <p>(Contact CASHLINK if you need other payment intervals.)</p>
+<h2 id='asking-for-customer-details'>Asking for customer details</h2>
+<blockquote>
+<p>Example: Require email address and phone number from payers.</p>
+</blockquote>
+<pre class="highlight sh tab-shell"><code>curl
+  -X POST
+  -H <span class="s1">'Content-Type: application/json'</span>
+  -H <span class="s1">'X-Api-Key: USERKEY'</span>
+  --data <span class="s1">'{
+    "type": "product",
+    "amount": "12.34",
+    "subject": "Online Payments EBook",
+    "require_email": true,
+    "require_phone_number": true
+  }'</span>
+  https://cashlink.de/business/api/v1/cashlink
+</code></pre>
+<p><a href="https://cashlink.de/business/+GS5WaAcRuDBV">Example payment page asking for additional customer details</a> – the page asks for all of the options below, with the freetext field used for &quot;Customer ID&quot;.</p>
+
+<p>If you want your payers to have to provide their full name, email address, postal address, or phone number in order to pay, you may optionally pass one or more of the following boolean options:</p>
+
+<ul>
+<li><code>require_name</code>: Require first and last name.</li>
+<li><code>require_email</code>: Require email address.</li>
+<li><code>require_address</code>: Require postal address.</li>
+<li><code>require_phone_number</code>: Require phone number.</li>
+</ul>
+
+<p>You can also add a custom-labeled field:</p>
+
+<ul>
+<li><code>freetext_field_type</code>: Either <code>&quot;short&quot;</code> (HTML <code>&lt;input&gt;</code>) or <code>&quot;long&quot;</code> (HTML <code>&lt;textarea&gt;</code>).</li>
+<li><code>freetext_field_label</code>: Label and placeholder for the field, for example <code>&quot;Customer ID&quot;</code>.</li>
+<li><code>freetext_field_required</code>: True if customers must fill in the field, false otherwise.</li>
+</ul>
+
+<p>Additional form fields will appear on the payment page and will have to be filled by payers. Note that first name, last name and postal address are not validated (except for the requirement that they have to be non-empty). Email address and phone numbers are syntactically validated. Unless prefixed with a country prefix (e.g. +41) phone numbers are assumed to be German (+49).</p>
+
+<p>You will receive the information customers have put in the form fields in the <code>cashlink.paid</code> webhook. See <a href="#cashlink-paid-new-payment"><code>cashlink.paid</code> event</a> for details. You can also see the data in your Dashboard.</p>
+
+<p><strong>Note:</strong> Some payment link types (product, subscription) may already require ask for some or all of the customer details described in this section (name + email). The corresponding options above have no effect on these links.</p>
 <h2 id='pre-allocated-urls'>Pre-allocated URLs</h2>
 <blockquote>
 <p>Example: Pre-allocate payment link URL</p>
@@ -414,7 +458,10 @@ If signup day of month is &gt; 28, then all future charges will be made on the 2
     </span><span class="s2">"payer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jane@doe.com"</span><span class="w">
+      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jane@doe.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+41123456789"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 River Street, 12345 Metropolis"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"freetext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer #9876"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -423,7 +470,7 @@ If signup day of month is &gt; 28, then all future charges will be made on the 2
 
 <p>Test IBAN payments will have <code>is_test</code> set to true.</p>
 
-<p>The <code>payer</code> field is available for product links and recurring payments.</p>
+<p>The <code>payer</code> field is available for product links and recurring payments, and if you activated any of the <code>require_*</code> options (see <a href="#asking-for-customer-details">Asking for customer details</a>).</p>
 
 <p>Note that in the example, <code>&quot;wxnfqAVVPWwZ&quot;</code> is the payment public ID, and <code>&quot;VX0GK5cvM1dO&quot;</code> is the payment link public ID.</p>
 <h3 id='recurring-payments-2'>Recurring payments</h3>

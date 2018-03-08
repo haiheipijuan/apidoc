@@ -121,6 +121,11 @@ Note that for optimal security you should use constant-time comparison instead o
 
 ## Changelog
 
+### New features in all versions
+
+- Mar 2, 2018: It is now possible to ask payers for their full name, email, postal address, and/or phone number.
+- Jan 22, 2018: New test IBAN to test payments without sending any actual money.
+
 ### 2018-01-15
 
 - The `type` field is now required and must be one of `"invoice"`, `"subscription"`, or `"product"`.

@@ -48,8 +48,8 @@ curl
 ```json
 {
   "public_id":"utqztAwTcQKB",
-  "api_key":"0fkX3z38jPAEYAuceVRAwksNqCTyQxx7TckHRmPD"
-              ^ This is the new account's USERKEY
+  "hmac_secret":"... the secret to verify webhooks using HMAC ...",
+  "api_key":"... the new account's USERKEY ..."
 }
 ```
 

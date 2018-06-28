@@ -113,9 +113,9 @@ CASHLINK makes a JSON POST request to your subscription URL when an event you're
 
 You may optionally verify the authenticity of the request using the HMAC value provided in the *Hook-Hmac* header. A request is guaranteed to be sent from CASHLINK if the following holds true:
 
-`HMAC-SHA512(secret_key, request body) == base64decode(request_headers["Hook-Hmac"])`
+`HMAC-SHA512(hmac_secret, request body) == base64decode(request_headers["Hook-Hmac"])`
 
-`secret_key` is a secret value provided to you upon registration.
+`hmac_secret` is a secret value provided to you upon registration.
 
 Note that for optimal security you should use constant-time comparison instead of your programming language's default `==` operator in order to be protected from [timing attacks](https://en.wikipedia.org/wiki/Timing_attack).
 

@@ -284,8 +284,8 @@
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"public_id"</span><span class="p">:</span><span class="s2">"utqztAwTcQKB"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"api_key"</span><span class="p">:</span><span class="s2">"0fkX3z38jPAEYAuceVRAwksNqCTyQxx7TckHRmPD"</span><span class="w">
-              </span><span class="err">^</span><span class="w"> </span><span class="err">This</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">new</span><span class="w"> </span><span class="err">account's</span><span class="w"> </span><span class="err">USERKEY</span><span class="w">
+  </span><span class="s2">"hmac_secret"</span><span class="p">:</span><span class="s2">"... the secret to verify webhooks using HMAC ..."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"api_key"</span><span class="p">:</span><span class="s2">"... the new account's USERKEY ..."</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>At the most basic level you can sign up businesses with only their <code>business_name</code> (e.g., <em>Jane Doe Ltd.</em>) and an <code>email</code> address that will be their username (e.g. <em>jane@doe.com</em>). This will give you an API key for the new user, which you will use for performing further actions on the business&#39; behalf. You should store the API key in your app or database.</p>

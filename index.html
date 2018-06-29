@@ -366,9 +366,9 @@ X-Request-Id: 7518ca89-3eb1-4884-ac28-ff81531d2fd8
 <h3 id='security'>Security</h3>
 <p>You may optionally verify the authenticity of the request using the HMAC value provided in the <em>Hook-Hmac</em> header. A request is guaranteed to be sent from CASHLINK if the following holds true:</p>
 
-<p><code>HMAC-SHA512(secret_key, request body) == base64decode(request_headers[&quot;Hook-Hmac&quot;])</code></p>
+<p><code>HMAC-SHA512(hmac_secret, request body) == base64decode(request_headers[&quot;Hook-Hmac&quot;])</code></p>
 
-<p><code>secret_key</code> is a secret value provided to you upon registration.</p>
+<p><code>hmac_secret</code> is a secret value provided to you upon registration.</p>
 
 <p>Note that for optimal security you should use constant-time comparison instead of your programming language&#39;s default <code>==</code> operator in order to be protected from <a href="https://en.wikipedia.org/wiki/Timing_attack">timing attacks</a>.</p>
 <h2 id='changelog'>Changelog</h2><h3 id='new-features-in-all-versions'>New features in all versions</h3>

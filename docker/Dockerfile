@@ -2,9 +2,11 @@ FROM ruby:2.5-alpine
 EXPOSE 4567
 
 RUN apk update \
- && apk add coreutils git make g++ nodejs
+    && apk add coreutils git make g++ nodejs 
 
-RUN git clone https://github.com/lord/slate && mv /slate/source /slate/source_orig
+RUN gem install bundler 
+
+RUN git clone https://github.com/slatedocs/slate && mv /slate/source /slate/source_orig
 
 RUN cd /slate && bundle install
 

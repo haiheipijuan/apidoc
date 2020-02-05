@@ -1,132 +1,509 @@
 ---
-title: CASHLINK API documentation
+title: BLUEHELIX BAAS API documentation
+
+language_tabs: # must be one of https://git.io/vQNgJ
+  - shell
+  - python
+  - javascript
+  - golang
 
 toc_footers:
-- <a href="payments.html">Go to Payment API</a>
-- <a href="platform.html">Go to Platform API</a>
+- <a href="en.html">English</a>
+- <a href="index.html">中文</a>
 
 search: true
 ---
 
-# CASHLINK API documentation
+# 关于 BLUEHELIX BAAS
 
-Parts of this documentation:
+## 概述
+BLUEHELIX BAAS 提供REST风格的API（HTTPS + JSON)，方便BHOP客户自助接入第三方公链。
 
-- This page: General information on API usage (authentication, versioning, error handling, webhooks)
-- [Payments API](payments.html): Create payment links and receive payment notifications.
-- [Platform API](platform.html): Create CASHLINK accounts on behalf of your platform's users to use with the Payments API.
+在请求API接口之前，需要申请APIKEY, 使用ED25519算法生成公私钥对，用户自己保存私钥，公钥在上币申请时进行提交，得到APIKEY。
 
-An access key is required to get access to the API. To get an access key, please contact CASHLINK (info@cashlink.de). The access key is referred to as "USERKEY" in the Payment API documentation, and "APPKEY" in the Platform API documentation.
+## 申请方式
+- 工单系统
+- 邮箱 service@bhop.cloud
 
-## Basics
+## 上币申请材料
 
-CASHLINK provides a REST-style API (HTTPS + JSON). HTTP methods follow the REST semantics (GET to retrieve information, POST to create a new entity, PUT to add something to an existing entity, UPDATE to update an entity, DELETE to delete an entity) unless noted differently.
+参数|值
+-----------|------------
+币种ID | ABC
+所属公链| ABC
+代币精度| 8
+代币总量| 100亿
+IP地址 | 100.100.100.100 （用作IP白名单限制）
 
-Base URL for all API calls is `https://cashlink.de/business/api/v1/`.
+## 客户端代码示例
+提供五种编程语言（Python, JavaScript, Golang, JAVA, PHP)的用户端代码供用户使用 [https://github.com/bhexopen/thridparty-chain/clients/] (https://github.com/bhexopen/thridparty-chain/clients/)。
 
-All requests must include the `X-Api-Key` header with an API key for authentication. (The "USERKEY" for creating payment links, and the "APPKEY" for creating new businesses as a Platform API user.)
+# API签名认证
 
-## Versioning
-The CASHLINK API is versioned; breaking API changes are always introduced with a version number increment. In order to ease migration, you may request that your API request be processed with the behaviour of an earlier API version, if the called endpoint supports this earlier version.
+## 域名
+- 测试环境：https://api.sandbox.bhex.com
+- 正式环境：https://api.baas.bhex.com
 
-> Example: Force 2017-10-01 API version
+## HTTP方法
+GET POST
 
-```sh
+## TIMESTAMP
+访问 API 时的 UNIX EPOCH 时间戳 (精确到毫秒)
+
+## 完成示例
+
+请求：
+
+METHOD    | URL | TIMESTAMP
+-----------|-----------------------|----------------------
+POST |    https://api.sandbox.bhex.com/v1/test                   | 1580887996488
+
+参数见右：
+
+```
+{
+  "side": 1,
+  "amount": "100.0543",
+  "token_id": "ABC",
+  "tx_hash":"0x1234567890",
+  "block_height": 1000000
+}
+```
+在进行签名之前，需要对请求参数，按照key的首字母进行排序，得到如下数据： `POST|/v1/test/|1580887996488|amount=100.0543&block_height=1000000&side=1&token_id=ABC&tx_hash=0x1234567890`
+
+使用您本地生成的 private_key（私钥），对数据进行ED25519签名，并对二进制结果进行 Hex 编码, 得到最终签名signature。
+
+在HTTP请求时，写入header，即可通过校验:
+
+- BWAAS-API-KEY
+- BWAAS-API-SIGNATURE
+- BWAAS-API-TIMESTAMP
+
+
+# 接口列表
+
+## 获取剩余地址数量
+
+> 获取剩余地址数量
+
+```shell
 curl
-  -X POST
-  -H "X-Api-Version: 2017-10-01"
-  ...
-  https://cashlink.de/business/api/v1/...
+  -X GET
+  -H "BWAAS-API-KEY: 123"
+  -H "BWAAS-API-TIMESTAMP: 1580887996488"
+  -H "BWAAS-API-SIGNATURE: f321da3"
+  https://api.sandbox.bhex.com/v1/address/count/unused
+?chain=ABC
 ```
 
-To request an earlier version, simply include the `X-Api-Version` header set to your desired version. If no header is passed, the latest stable API version is assumed. If the endpoint does not support your desired version anymore, it fails with a 400 Bad Request.
+```golang
+```
 
-### Available API versions
+```python
+```
 
-Version    | Forward compatible to | Remarks
------------|-----------------------|----------------------
-2018-01-15 |                       | default version starting 2018/05/01
-2017-10-01 | 2018-01-15            | default version until 2018/04/30
+```javascript
+```
 
-See the Changelog below for details on API versions.
-
-## Error handling
-
-> Example: Missing subject field
+> 返回结果：
 
 ```json
-{"subject": ["This field is required."]}
-```
-
-If the input you provided to one of the API calls is missing or does not validate, you will get a HTTP 4xx response, along with a JSON object response body that provides detailed information on the request errors. Errors are a list of error strings.
-
-## Test Mode
-
-By default your API key will be in "test mode." You can use test mode to safely develop and test your integration.  Differences between production mode and test mode:
-
-- Payments: Payments will only be possible from a test IBAN and will not be charged. See [Payment API: Test Mode](/payments.html#test-mode) for details.
-- Platform: Businesses created will not be sent to the PSP. See [Platform API: Test Mode](/platform.html#test-mode) for details.
-
-Please get in contact when your integration is ready so we can switch your API key to production mode. We can also provide you with a separate production API key if that's easier for you.
-
-## Events and Webhooks
-
-> Example: Webhook request to your server for `cashlink.paid` event
-
-```
-POST /webhook/payments HTTP/1.1
-Host: yourdomain.com
-User-Agent: cashlink
-Content-Type: application/json
-Hook-Hmac: Pmwczrx6I1+KzPRYjMrB8nH3Hq[...]
-X-Request-Id: 7518ca89-3eb1-4884-ac28-ff81531d2fd8
-...
 {
-  "event": "cashlink.paid",
-  "timestamp": "2017-10-09T13:11:03.661620",
-  "business": "utqztAwTcQKB",
-  "data": {
-    "is_test": false,
-    "public_id": "wxnfqAVVPWwZ",
-    "cashlink": {
-      "type": "invoice",
-      "public_id": "VX0GK5cvM1dO",
-      "subject": "Invoice no. 12345",
-      "amount": "12.34",
-      "amount_currency": "EUR"
-    }
-  }
+    "code": 10000,
+    "msg": "success",
+    "data": 1000
 }
 ```
 
-Get in contact with CASHLINK (info@cashlink.de) if you want to use webhooks.
+HTTP Request：
 
-CASHLINK makes a JSON POST request to your subscription URL when an event you're subscribed to happens.
+`GET /v1/address/count/unused`
 
-**Integration examples:** See [https://github.com/cashlink/apidoc/tree/master/examples](https://github.com/cashlink/apidoc/tree/master/examples)
 
-**Timeouts:** Webhook requests have a timeout of **2 seconds** and are not retried.
+请求参数：
 
-**Platform API users:** The `business` field identifies the business this event happened to. This is useful if you have the events of multiple businesses sent to the same webhook endpoint; use the `business` field to know which business is concerned in this case.
+参数 | 类型| 必须| 说明
+-----------|-----------|-----------|-----------
+chain | string| 是|那个链
 
-### Security
+响应结果：
 
-You may optionally verify the authenticity of the request using the HMAC value provided in the *Hook-Hmac* header. A request is guaranteed to be sent from CASHLINK if the following holds true:
+参数 | 类型| 说明
+-----------|-----------|-----------
+code | int| 详情见返回类型表
+msg | string | 返回内容；失败时为错误信息
+data |  | 返回具体数据
 
-`HMAC-SHA512(hmac_secret, request body) == base64decode(request_headers["Hook-Hmac"])`
+<aside class="notice">
+检查是否需要重新生成地址时使用，需要定期调用，视新增用户速度决定。建议每小时调用一次。
+</aside>
 
-`hmac_secret` is a secret value provided to you upon registration.
+## 添加充值地址
 
-Note that for optimal security you should use constant-time comparison instead of your programming language's default `==` operator in order to be protected from [timing attacks](https://en.wikipedia.org/wiki/Timing_attack).
+> 添加充值地址
 
-## Changelog
+```shell
+curl
+  -X POST
+  -H "BWAAS-API-KEY: 123"
+  -H "BWAAS-API-TIMESTAMP: 1580887996488"
+  -H "BWAAS-API-SIGNATURE: f321da3"
+  -- data '
+    {
+      "chain":"ABC",
+      "addr_list":[
+        "111111",
+        "222222"
+      ]
+    }
+  '
+  https://api.sandbox.bhex.com/v1/address/add
+```
 
-### New features in all versions
+```golang
+```
 
-- Mar 2, 2018: It is now possible to ask payers for their full name, email, postal address, and/or phone number.
-- Jan 22, 2018: New test IBAN to test payments without sending any actual money.
+```python
+```
 
-### 2018-01-15
+```javascript
+```
 
-- The `type` field is now required and must be one of `"invoice"`, `"subscription"`, or `"product"`.
-  This is forward compatible to version 2017-10-01: You can start using the `type` field today.
+> 返回结果：
+
+```json
+{
+    "code": 10000,
+    "msg": "success",
+    "data": 1000
+}
+```
+
+HTTP Request：
+
+`POST /v1/address/add`
+
+
+请求参数：
+
+参数 | 类型| 必须| 说明
+-----------|-----------|-----------|-----------
+chain | string| 是|那个链
+addr_list | []string | 是|地址列表
+
+响应结果：
+
+参数 | 类型| 说明
+-----------|-----------|-----------
+code | int| 详情见返回类型表
+msg | string | 返回内容；失败时为错误信息
+data |  | 返回具体数据
+
+
+<aside class="notice">
+当检查到剩余地址小于特定值，比如100时，重新生成一批地址，并调用此接口添加充值地址，建议每次添加的充值地址不超过100个，
+如果需要导入大量地址，可以多次调用此接口
+</aside>
+
+## 充值到账通知
+
+> 充值到账通知
+
+```shell
+curl
+  -X POST
+  -H "BWAAS-API-KEY: 123"
+  -H "BWAAS-API-TIMESTAMP: 1580887996488"
+  -H "BWAAS-API-SIGNATURE: f321da3"
+  -- data '
+    {
+        "from": "addr1",
+        "to": "addr2",
+        "memo":"1234",
+        "index": 1,
+        "asset": "bhop-asset",
+        "amount": "124.23",
+        "confirms": 1,
+        "tx_hash": "1234",
+        "block_height": 124,
+        "block_time": 1234,
+        "chain":"ABC"，
+    }
+  '
+  https://api.sandbox.bhex.com/v1/notify/deposit
+```
+
+```golang
+```
+
+```python
+```
+
+```javascript
+```
+
+> 返回结果：
+
+```json
+{
+    "code": 10000,
+    "msg": "success",
+    "data": 1000
+}
+```
+
+HTTP Request：
+
+`POST /v1/ntofify/deposit`
+
+请求参数：
+
+参数 | 类型| 必须| 说明
+-----------|-----------|-----------|-----------
+chain | string| 是|那个链
+from | string | 是|从哪个地址转出来
+to | string | 是|转给那个地址
+memo| string| 可选| memo标识
+index| int | 是| 该充值所在交易中的位置
+asset| string| 否| 所属资产域
+amount| string| 是| 充值金额
+confirms| int | 是| 交易确认数
+tx_hash| string|是 |交易hash
+block_height| int| 是| 区块高度
+block_time| int| 是| 区块时间（秒）
+
+
+响应结果：
+
+参数 | 类型| 说明
+-----------|-----------|-----------
+code | int| 详情见返回类型表
+msg | string | 返回内容；失败时为错误信息
+data |  | 返回具体数据
+
+<aside class="notice">
+当有用户充值时，调用此接口，为保证充值可靠性，充值需要逐笔执行，超过1条的话可以多次调用此接口。客户端必须保证充币的真实可靠，因客户端通知错误充值带来的损失，由客户端执行者承担。
+</aside>
+
+
+## 获取待处理提现请求
+
+> 获取待处理提现请求
+
+```shell
+curl
+  -X GET
+  -H "BWAAS-API-KEY: 123"
+  -H "BWAAS-API-TIMESTAMP: 1580887996488"
+  -H "BWAAS-API-SIGNATURE: f321da3"
+  https://api.sandbox.bhex.com/v1/withdrawal/orders
+```
+
+```golang
+```
+
+```python
+```
+
+```javascript
+```
+
+> 返回结果：
+
+```json
+{
+    "code": 10000,
+    "msg": "success",
+    "data":[
+      {
+            "order_id": 1234,
+            "token_id":"ABC",
+            "to": "bhexaddr1",
+            "memo": "bhexmemo",
+            "amount": "12.34"
+      },
+      {
+            "order_id": 2345,
+            "token_id":"ABC",
+            "to": "bhexaddr1",
+            "memo": "bhexmemo",
+            "amount": "12.34"
+      }
+    ]
+}
+```
+
+HTTP Request：
+
+`POST /v1/withdrawal/orders`
+
+请求参数：
+
+参数 | 类型| 必须| 说明
+-----------|-----------|-----------|-----------
+
+
+响应结果：
+
+参数 | 类型| 说明
+-----------|-----------|-----------
+code | int| 详情见返回类型表
+msg | string | 返回内容；失败时为错误信息
+data | []order | 待处理提现订单列表
+order_id| int64 | 订单id
+token_id| string| 提现币种
+to | string | 提现给那个地址
+memo | string | memo标记
+amount | string | 提现金额
+
+
+<aside class="notice">
+当有用户充值时，调用此接口，为保证充值可靠性，充值需要逐笔执行，超过1条的话可以多次调用此接口。客户端必须保证充币的真实可靠，因客户端通知错误充值带来的损失，由客户端执行者承担。
+</aside>
+
+## 提现处理完成通知
+
+> 提现处理完成通知
+
+```shell
+curl
+  -X GET
+  -H "BWAAS-API-KEY: 123"
+  -H "BWAAS-API-TIMESTAMP: 1580887996488"
+  -H "BWAAS-API-SIGNATURE: f321da3"
+  --data '
+  {
+    "chain":"ABC",
+    "order_id": 1234,
+    "token_id": "ABV",
+    "to": "bhexaddr1",
+    "memo": "bhexmemo",
+    "amount": "12.34",
+    "tx_hash": "0x5f99810a4154379e5b7951419a77250f020be54b78acb9a8747ff8b0ec75769d",
+    "confirm": 100,
+    "block_height": 6581548,
+    "block_time": 1540480255
+  }
+  '
+  https://api.sandbox.bhex.com/v1/notify/withdrawal
+```
+
+```golang
+```
+
+```python
+```
+
+```javascript
+```
+
+> 返回结果：
+
+```json
+{
+    "code": 10000,
+    "msg": "success",
+}
+```
+
+HTTP Request：
+
+`POST /v1/notify/withdrawal`
+
+请求参数：
+
+参数 | 类型| 必须| 说明
+-----------|-----------|-----------|-----------
+chain| string|是|那个链
+order_id| int64 | 是|订单id
+token_id| string| 是|提现币种
+to | string | 是|提现给那个地址
+memo | string | 是|memo标记
+amount | string | 是|提现金额
+tx_hash| string | 是|交易hash
+confirm|int|是|确认数
+block_height|int |是|区块高度
+block_time|int |是|区块时间（秒）
+
+响应结果：
+
+参数 | 类型| 说明
+-----------|-----------|-----------
+code | int| 详情见返回类型表
+msg | string | 返回内容；失败时为错误信息
+
+
+
+<aside class="notice">
+提币成功（提币交易已被区块链打包并确认执行成功）后调用此接口，为保证提币结果反馈可靠性，每次仅通知一笔提现处理结果。
+客服端负责保证提币执行后才调用此接口
+</aside>
+
+
+## 定期对账
+
+> 定期对账
+
+```shell
+curl
+  -X GET
+  -H "BWAAS-API-KEY: 123"
+  -H "BWAAS-API-TIMESTAMP: 1580887996488"
+  -H "BWAAS-API-SIGNATURE: f321da3"
+  --data '
+  {
+    "chain":"ABC",
+    "token_id": "ABV",
+    "total_deposit_amount": "100000.567",
+    "total_withdrawal_amount": "10000",
+    "last_block_height": 100000
+  }
+  '
+  https://api.sandbox.bhex.com/v1/asset/verify
+```
+
+```golang
+```
+
+```python
+```
+
+```javascript
+```
+
+> 返回结果：
+
+```json
+{
+    "code": 10000,
+    "msg": "success",
+}
+```
+
+HTTP Request：
+
+`POST /v1/asset/verify`
+
+请求参数：
+
+参数 | 类型| 必须| 说明
+-----------|-----------|-----------|-----------
+chain| string|是|那个链
+token_id| string| 是|提现币种
+to | string | 是|提现给那个地址
+total_deposit_amount | string | 是|总充值金额
+total_withdrawal_amount | string | 是|总提现金额
+last_block_height|int |是|对账最高区块高度
+
+响应结果：
+
+参数 | 类型| 说明
+-----------|-----------|-----------
+code | int| 详情见返回类型表
+msg | string | 返回内容；失败时为错误信息
+
+
+
+<aside class="notice">
+定期进行资产对账，客服端定期（每小时或者每天进行对账，客户端根据链的出块时间，交易数量合理确定）向服务端反馈特定链上资产的充提情况（截止到asset_info中指定的区块高度），如果有未处理完成的提现订单，建议处理完成后进行对账。当服务端发现客户端反馈的资产信息与服务端不一致，将返回错误，并暂停该币种的充值提现。
+</aside>

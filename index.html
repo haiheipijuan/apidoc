@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>CASHLINK API documentation</title>
+    <title>BLUEHELIX BAAS API documentation</title>
 
     <!-- Google Optimize -->
     <style>.async-hide{opacity:0!important}</style><script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date; h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')}; (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c; })(window,document.documentElement,'async-hide','dataLayer',4000, {'GTM-P56KNPS':true});</script>
@@ -204,186 +204,844 @@
   color: #f92672;
 }
     </style>
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all.js"></script>
+    <link href="stylesheets/screen-1ab8452a.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-bccf8c07.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-c5541673.js"></script>
   </head>
 
-  <body class="index" data-languages="[]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;python&quot;,&quot;javascript&quot;,&quot;golang&quot;]">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P56KNPS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" alt="Navbar" />
+        <img src="images/navbar-cad8cdcb.png" alt="Navbar" />
       </span>
     </a>
     <div class="toc-wrapper">
       <a href="https://docs.cashlink.io">
-        <img src="images/logo.png" class="logo" alt="Logo" />
+        <img src="images/logo-9df24636.png" class="logo" alt="Logo" />
       </a>
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="golang">golang</a>
+        </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
         <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
-            <a href="#cashlink-api-documentation" class="toc-h1 toc-link" data-title="CASHLINK API documentation">CASHLINK API documentation</a>
+            <a href="#bluehelix-baas" class="toc-h1 toc-link" data-title="关于 BLUEHELIX BAAS">关于 BLUEHELIX BAAS</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#basics" class="toc-h2 toc-link" data-title="Basics">Basics</a>
+                    <a href="#153042ed9e" class="toc-h2 toc-link" data-title="概述">概述</a>
                   </li>
                   <li>
-                    <a href="#versioning" class="toc-h2 toc-link" data-title="Versioning">Versioning</a>
+                    <a href="#c3b3224d14" class="toc-h2 toc-link" data-title="申请方式">申请方式</a>
                   </li>
                   <li>
-                    <a href="#error-handling" class="toc-h2 toc-link" data-title="Error handling">Error handling</a>
+                    <a href="#ebaf09501a" class="toc-h2 toc-link" data-title="上币申请材料">上币申请材料</a>
                   </li>
                   <li>
-                    <a href="#test-mode" class="toc-h2 toc-link" data-title="Test Mode">Test Mode</a>
+                    <a href="#1138396d9a" class="toc-h2 toc-link" data-title="客户端代码示例">客户端代码示例</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#api" class="toc-h1 toc-link" data-title="API签名认证">API签名认证</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#282d68464d" class="toc-h2 toc-link" data-title="域名">域名</a>
                   </li>
                   <li>
-                    <a href="#events-and-webhooks" class="toc-h2 toc-link" data-title="Events and Webhooks">Events and Webhooks</a>
+                    <a href="#http" class="toc-h2 toc-link" data-title="HTTP方法">HTTP方法</a>
                   </li>
                   <li>
-                    <a href="#changelog" class="toc-h2 toc-link" data-title="Changelog">Changelog</a>
+                    <a href="#timestamp" class="toc-h2 toc-link" data-title="TIMESTAMP">TIMESTAMP</a>
+                  </li>
+                  <li>
+                    <a href="#efd228142a" class="toc-h2 toc-link" data-title="完成示例">完成示例</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#14f70b1746" class="toc-h1 toc-link" data-title="接口列表">接口列表</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#412366bdb1" class="toc-h2 toc-link" data-title="获取剩余地址数量">获取剩余地址数量</a>
+                  </li>
+                  <li>
+                    <a href="#4853ea161a" class="toc-h2 toc-link" data-title="添加充值地址">添加充值地址</a>
+                  </li>
+                  <li>
+                    <a href="#40ef847a16" class="toc-h2 toc-link" data-title="充值到账通知">充值到账通知</a>
+                  </li>
+                  <li>
+                    <a href="#82d9036fa2" class="toc-h2 toc-link" data-title="获取待处理提现请求">获取待处理提现请求</a>
+                  </li>
+                  <li>
+                    <a href="#3366e0610d" class="toc-h2 toc-link" data-title="提现处理完成通知">提现处理完成通知</a>
+                  </li>
+                  <li>
+                    <a href="#679af9d4b3" class="toc-h2 toc-link" data-title="定期对账">定期对账</a>
                   </li>
               </ul>
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href="payments.html">Go to Payment API</a></li>
-            <li><a href="platform.html">Go to Platform API</a></li>
+            <li><a href="en.html">English</a></li>
+            <li><a href="index.html">中文</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='cashlink-api-documentation'>CASHLINK API documentation</h1>
-<p>Parts of this documentation:</p>
+        <h1 id='bluehelix-baas'>关于 BLUEHELIX BAAS</h1><h2 id='153042ed9e'>概述</h2>
+<p>BLUEHELIX BAAS 提供REST风格的API（HTTPS + JSON)，方便BHOP客户自助接入第三方公链。</p>
 
+<p>在请求API接口之前，需要申请APIKEY, 使用ED25519算法生成公私钥对，用户自己保存私钥，公钥在上币申请时进行提交，得到APIKEY。</p>
+<h2 id='c3b3224d14'>申请方式</h2>
 <ul>
-<li>This page: General information on API usage (authentication, versioning, error handling, webhooks)</li>
-<li><a href="payments.html">Payments API</a>: Create payment links and receive payment notifications.</li>
-<li><a href="platform.html">Platform API</a>: Create CASHLINK accounts on behalf of your platform&#39;s users to use with the Payments API.</li>
+<li>工单系统</li>
+<li>邮箱 service@bhop.cloud</li>
 </ul>
-
-<p>An access key is required to get access to the API. To get an access key, please contact CASHLINK (info@cashlink.de). The access key is referred to as &quot;USERKEY&quot; in the Payment API documentation, and &quot;APPKEY&quot; in the Platform API documentation.</p>
-<h2 id='basics'>Basics</h2>
-<p>CASHLINK provides a REST-style API (HTTPS + JSON). HTTP methods follow the REST semantics (GET to retrieve information, POST to create a new entity, PUT to add something to an existing entity, UPDATE to update an entity, DELETE to delete an entity) unless noted differently.</p>
-
-<p>Base URL for all API calls is <code>https://cashlink.de/business/api/v1/</code>.</p>
-
-<p>All requests must include the <code>X-Api-Key</code> header with an API key for authentication. (The &quot;USERKEY&quot; for creating payment links, and the &quot;APPKEY&quot; for creating new businesses as a Platform API user.)</p>
-<h2 id='versioning'>Versioning</h2>
-<p>The CASHLINK API is versioned; breaking API changes are always introduced with a version number increment. In order to ease migration, you may request that your API request be processed with the behaviour of an earlier API version, if the called endpoint supports this earlier version.</p>
-
-<blockquote>
-<p>Example: Force 2017-10-01 API version</p>
-</blockquote>
-<pre class="highlight sh tab-shell"><code>curl
-  -X POST
-  -H <span class="s2">"X-Api-Version: 2017-10-01"</span>
-  ...
-  https://cashlink.de/business/api/v1/...
-</code></pre>
-<p>To request an earlier version, simply include the <code>X-Api-Version</code> header set to your desired version. If no header is passed, the latest stable API version is assumed. If the endpoint does not support your desired version anymore, it fails with a 400 Bad Request.</p>
-<h3 id='available-api-versions'>Available API versions</h3>
+<h2 id='ebaf09501a'>上币申请材料</h2>
 <table><thead>
 <tr>
-<th>Version</th>
-<th>Forward compatible to</th>
-<th>Remarks</th>
+<th>参数</th>
+<th>值</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>2018-01-15</td>
-<td></td>
-<td>default version starting 2018/05/01</td>
+<td>币种ID</td>
+<td>ABC</td>
 </tr>
 <tr>
-<td>2017-10-01</td>
-<td>2018-01-15</td>
-<td>default version until 2018/04/30</td>
+<td>所属公链</td>
+<td>ABC</td>
+</tr>
+<tr>
+<td>代币精度</td>
+<td>8</td>
+</tr>
+<tr>
+<td>代币总量</td>
+<td>100亿</td>
+</tr>
+<tr>
+<td>IP地址</td>
+<td>100.100.100.100 （用作IP白名单限制）</td>
+</tr>
+</tbody></table>
+<h2 id='1138396d9a'>客户端代码示例</h2>
+<p>提供五种编程语言（Python, JavaScript, Golang, JAVA, PHP)的用户端代码供用户使用 <a href="https://github.com/bhexopen/thridparty-chain/clients/">https://github.com/bhexopen/thridparty-chain/clients/</a>。</p>
+<h1 id='api'>API签名认证</h1><h2 id='282d68464d'>域名</h2>
+<ul>
+<li>测试环境：https://api.sandbox.bhex.com</li>
+<li>正式环境：https://api.baas.bhex.com</li>
+</ul>
+<h2 id='http'>HTTP方法</h2>
+<p>GET POST</p>
+<h2 id='timestamp'>TIMESTAMP</h2>
+<p>访问 API 时的 UNIX EPOCH 时间戳 (精确到毫秒)</p>
+<h2 id='efd228142a'>完成示例</h2>
+<p>请求：</p>
+
+<table><thead>
+<tr>
+<th>METHOD</th>
+<th>URL</th>
+<th>TIMESTAMP</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>POST</td>
+<td>https://api.sandbox.bhex.com/v1/test</td>
+<td>1580887996488</td>
 </tr>
 </tbody></table>
 
-<p>See the Changelog below for details on API versions.</p>
-<h2 id='error-handling'>Error handling</h2>
-<blockquote>
-<p>Example: Missing subject field</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"This field is required."</span><span class="p">]}</span><span class="w">
-</span></code></pre>
-<p>If the input you provided to one of the API calls is missing or does not validate, you will get a HTTP 4xx response, along with a JSON object response body that provides detailed information on the request errors. Errors are a list of error strings.</p>
-<h2 id='test-mode'>Test Mode</h2>
-<p>By default your API key will be in &quot;test mode.&quot; You can use test mode to safely develop and test your integration.  Differences between production mode and test mode:</p>
-
-<ul>
-<li>Payments: Payments will only be possible from a test IBAN and will not be charged. See <a href="payments.html#test-mode">Payment API: Test Mode</a> for details.</li>
-<li>Platform: Businesses created will not be sent to the PSP. See <a href="platform.html#test-mode">Platform API: Test Mode</a> for details.</li>
-</ul>
-
-<p>Please get in contact when your integration is ready so we can switch your API key to production mode. We can also provide you with a separate production API key if that&#39;s easier for you.</p>
-<h2 id='events-and-webhooks'>Events and Webhooks</h2>
-<blockquote>
-<p>Example: Webhook request to your server for <code>cashlink.paid</code> event</p>
-</blockquote>
-<pre class="highlight plaintext"><code>POST /webhook/payments HTTP/1.1
-Host: yourdomain.com
-User-Agent: cashlink
-Content-Type: application/json
-Hook-Hmac: Pmwczrx6I1+KzPRYjMrB8nH3Hq[...]
-X-Request-Id: 7518ca89-3eb1-4884-ac28-ff81531d2fd8
-...
-{
-  "event": "cashlink.paid",
-  "timestamp": "2017-10-09T13:11:03.661620",
-  "business": "utqztAwTcQKB",
-  "data": {
-    "is_test": false,
-    "public_id": "wxnfqAVVPWwZ",
-    "cashlink": {
-      "type": "invoice",
-      "public_id": "VX0GK5cvM1dO",
-      "subject": "Invoice no. 12345",
-      "amount": "12.34",
-      "amount_currency": "EUR"
-    }
-  }
+<p>参数见右：</p>
+<pre class="highlight plaintext"><code>{
+  "side": 1,
+  "amount": "100.0543",
+  "token_id": "ABC",
+  "tx_hash":"0x1234567890",
+  "block_height": 1000000
 }
 </code></pre>
-<p>Get in contact with CASHLINK (info@cashlink.de) if you want to use webhooks.</p>
+<p>在进行签名之前，需要对请求参数，按照key的首字母进行排序，得到如下数据： <code>POST|/v1/test/|1580887996488|amount=100.0543&amp;block_height=1000000&amp;side=1&amp;token_id=ABC&amp;tx_hash=0x1234567890</code></p>
 
-<p>CASHLINK makes a JSON POST request to your subscription URL when an event you&#39;re subscribed to happens.</p>
+<p>使用您本地生成的 private_key（私钥），对数据进行ED25519签名，并对二进制结果进行 Hex 编码, 得到最终签名signature。</p>
 
-<p><strong>Integration examples:</strong> See <a href="https://github.com/cashlink/apidoc/tree/master/examples">https://github.com/cashlink/apidoc/tree/master/examples</a></p>
+<p>在HTTP请求时，写入header，即可通过校验:</p>
 
-<p><strong>Timeouts:</strong> Webhook requests have a timeout of <strong>2 seconds</strong> and are not retried.</p>
-
-<p><strong>Platform API users:</strong> The <code>business</code> field identifies the business this event happened to. This is useful if you have the events of multiple businesses sent to the same webhook endpoint; use the <code>business</code> field to know which business is concerned in this case.</p>
-<h3 id='security'>Security</h3>
-<p>You may optionally verify the authenticity of the request using the HMAC value provided in the <em>Hook-Hmac</em> header. A request is guaranteed to be sent from CASHLINK if the following holds true:</p>
-
-<p><code>HMAC-SHA512(hmac_secret, request body) == base64decode(request_headers[&quot;Hook-Hmac&quot;])</code></p>
-
-<p><code>hmac_secret</code> is a secret value provided to you upon registration.</p>
-
-<p>Note that for optimal security you should use constant-time comparison instead of your programming language&#39;s default <code>==</code> operator in order to be protected from <a href="https://en.wikipedia.org/wiki/Timing_attack">timing attacks</a>.</p>
-<h2 id='changelog'>Changelog</h2><h3 id='new-features-in-all-versions'>New features in all versions</h3>
 <ul>
-<li>Mar 2, 2018: It is now possible to ask payers for their full name, email, postal address, and/or phone number.</li>
-<li>Jan 22, 2018: New test IBAN to test payments without sending any actual money.</li>
+<li>BWAAS-API-KEY</li>
+<li>BWAAS-API-SIGNATURE</li>
+<li>BWAAS-API-TIMESTAMP</li>
 </ul>
-<h3 id='2018-01-15'>2018-01-15</h3>
-<ul>
-<li>The <code>type</code> field is now required and must be one of <code>&quot;invoice&quot;</code>, <code>&quot;subscription&quot;</code>, or <code>&quot;product&quot;</code>.
-This is forward compatible to version 2017-10-01: You can start using the <code>type</code> field today.</li>
-</ul>
+<h1 id='14f70b1746'>接口列表</h1><h2 id='412366bdb1'>获取剩余地址数量</h2>
+<blockquote>
+<p>获取剩余地址数量</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
+  -X GET
+  -H <span class="s2">"BWAAS-API-KEY: 123"</span>
+  -H <span class="s2">"BWAAS-API-TIMESTAMP: 1580887996488"</span>
+  -H <span class="s2">"BWAAS-API-SIGNATURE: f321da3"</span>
+  https://api.sandbox.bhex.com/v1/address/count/unused
+?chain<span class="o">=</span>ABC
+</code></pre><pre class="highlight go"><code></code></pre><pre class="highlight python tab-python"><code></code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>返回结果：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>HTTP Request：</p>
+
+<p><code>GET /v1/address/count/unused</code></p>
+
+<p>请求参数：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>是</td>
+<td>那个链</td>
+</tr>
+</tbody></table>
+
+<p>响应结果：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>详情见返回类型表</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>string</td>
+<td>返回内容；失败时为错误信息</td>
+</tr>
+<tr>
+<td>data</td>
+<td></td>
+<td>返回具体数据</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+检查是否需要重新生成地址时使用，需要定期调用，视新增用户速度决定。建议每小时调用一次。
+</aside>
+<h2 id='4853ea161a'>添加充值地址</h2>
+<blockquote>
+<p>添加充值地址</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
+  -X POST
+  -H <span class="s2">"BWAAS-API-KEY: 123"</span>
+  -H <span class="s2">"BWAAS-API-TIMESTAMP: 1580887996488"</span>
+  -H <span class="s2">"BWAAS-API-SIGNATURE: f321da3"</span>
+  -- data <span class="s1">'
+    {
+      "chain":"ABC",
+      "addr_list":[
+        "111111",
+        "222222"
+      ]
+    }
+  '</span>
+  https://api.sandbox.bhex.com/v1/address/add
+</code></pre><pre class="highlight go"><code></code></pre><pre class="highlight python tab-python"><code></code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>返回结果：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>HTTP Request：</p>
+
+<p><code>POST /v1/address/add</code></p>
+
+<p>请求参数：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>是</td>
+<td>那个链</td>
+</tr>
+<tr>
+<td>addr_list</td>
+<td>[]string</td>
+<td>是</td>
+<td>地址列表</td>
+</tr>
+</tbody></table>
+
+<p>响应结果：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>详情见返回类型表</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>string</td>
+<td>返回内容；失败时为错误信息</td>
+</tr>
+<tr>
+<td>data</td>
+<td></td>
+<td>返回具体数据</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+当检查到剩余地址小于特定值，比如100时，重新生成一批地址，并调用此接口添加充值地址，建议每次添加的充值地址不超过100个，
+如果需要导入大量地址，可以多次调用此接口
+</aside>
+<h2 id='40ef847a16'>充值到账通知</h2>
+<blockquote>
+<p>充值到账通知</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
+  -X POST
+  -H <span class="s2">"BWAAS-API-KEY: 123"</span>
+  -H <span class="s2">"BWAAS-API-TIMESTAMP: 1580887996488"</span>
+  -H <span class="s2">"BWAAS-API-SIGNATURE: f321da3"</span>
+  -- data <span class="s1">'
+    {
+        "from": "addr1",
+        "to": "addr2",
+        "memo":"1234",
+        "index": 1,
+        "asset": "bhop-asset",
+        "amount": "124.23",
+        "confirms": 1,
+        "tx_hash": "1234",
+        "block_height": 124,
+        "block_time": 1234,
+        "chain":"ABC"，
+    }
+  '</span>
+  https://api.sandbox.bhex.com/v1/notify/deposit
+</code></pre><pre class="highlight go"><code></code></pre><pre class="highlight python tab-python"><code></code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>返回结果：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>HTTP Request：</p>
+
+<p><code>POST /v1/ntofify/deposit</code></p>
+
+<p>请求参数：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>是</td>
+<td>那个链</td>
+</tr>
+<tr>
+<td>from</td>
+<td>string</td>
+<td>是</td>
+<td>从哪个地址转出来</td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>是</td>
+<td>转给那个地址</td>
+</tr>
+<tr>
+<td>memo</td>
+<td>string</td>
+<td>可选</td>
+<td>memo标识</td>
+</tr>
+<tr>
+<td>index</td>
+<td>int</td>
+<td>是</td>
+<td>该充值所在交易中的位置</td>
+</tr>
+<tr>
+<td>asset</td>
+<td>string</td>
+<td>否</td>
+<td>所属资产域</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>是</td>
+<td>充值金额</td>
+</tr>
+<tr>
+<td>confirms</td>
+<td>int</td>
+<td>是</td>
+<td>交易确认数</td>
+</tr>
+<tr>
+<td>tx_hash</td>
+<td>string</td>
+<td>是</td>
+<td>交易hash</td>
+</tr>
+<tr>
+<td>block_height</td>
+<td>int</td>
+<td>是</td>
+<td>区块高度</td>
+</tr>
+<tr>
+<td>block_time</td>
+<td>int</td>
+<td>是</td>
+<td>区块时间（秒）</td>
+</tr>
+</tbody></table>
+
+<p>响应结果：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>详情见返回类型表</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>string</td>
+<td>返回内容；失败时为错误信息</td>
+</tr>
+<tr>
+<td>data</td>
+<td></td>
+<td>返回具体数据</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+当有用户充值时，调用此接口，为保证充值可靠性，充值需要逐笔执行，超过1条的话可以多次调用此接口。客户端必须保证充币的真实可靠，因客户端通知错误充值带来的损失，由客户端执行者承担。
+</aside>
+<h2 id='82d9036fa2'>获取待处理提现请求</h2>
+<blockquote>
+<p>获取待处理提现请求</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
+  -X GET
+  -H <span class="s2">"BWAAS-API-KEY: 123"</span>
+  -H <span class="s2">"BWAAS-API-TIMESTAMP: 1580887996488"</span>
+  -H <span class="s2">"BWAAS-API-SIGNATURE: f321da3"</span>
+  https://api.sandbox.bhex.com/v1/withdrawal/orders
+</code></pre><pre class="highlight go"><code></code></pre><pre class="highlight python tab-python"><code></code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>返回结果：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"token_id"</span><span class="p">:</span><span class="s2">"ABC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bhexaddr1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"memo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bhexmemo"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.34"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2345</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"token_id"</span><span class="p">:</span><span class="s2">"ABC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bhexaddr1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"memo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bhexmemo"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.34"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>HTTP Request：</p>
+
+<p><code>POST /v1/withdrawal/orders</code></p>
+
+<p>请求参数：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>响应结果：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>详情见返回类型表</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>string</td>
+<td>返回内容；失败时为错误信息</td>
+</tr>
+<tr>
+<td>data</td>
+<td>[]order</td>
+<td>待处理提现订单列表</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>int64</td>
+<td>订单id</td>
+</tr>
+<tr>
+<td>token_id</td>
+<td>string</td>
+<td>提现币种</td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>提现给那个地址</td>
+</tr>
+<tr>
+<td>memo</td>
+<td>string</td>
+<td>memo标记</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>提现金额</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+当有用户充值时，调用此接口，为保证充值可靠性，充值需要逐笔执行，超过1条的话可以多次调用此接口。客户端必须保证充币的真实可靠，因客户端通知错误充值带来的损失，由客户端执行者承担。
+</aside>
+<h2 id='3366e0610d'>提现处理完成通知</h2>
+<blockquote>
+<p>提现处理完成通知</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
+  -X GET
+  -H <span class="s2">"BWAAS-API-KEY: 123"</span>
+  -H <span class="s2">"BWAAS-API-TIMESTAMP: 1580887996488"</span>
+  -H <span class="s2">"BWAAS-API-SIGNATURE: f321da3"</span>
+  --data <span class="s1">'
+  {
+    "chain":"ABC",
+    "order_id": 1234,
+    "token_id": "ABV",
+    "to": "bhexaddr1",
+    "memo": "bhexmemo",
+    "amount": "12.34",
+    "tx_hash": "0x5f99810a4154379e5b7951419a77250f020be54b78acb9a8747ff8b0ec75769d",
+    "confirm": 100,
+    "block_height": 6581548,
+    "block_time": 1540480255
+  }
+  '</span>
+  https://api.sandbox.bhex.com/v1/notify/withdrawal
+</code></pre><pre class="highlight go"><code></code></pre><pre class="highlight python tab-python"><code></code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>返回结果：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>HTTP Request：</p>
+
+<p><code>POST /v1/notify/withdrawal</code></p>
+
+<p>请求参数：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>是</td>
+<td>那个链</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>int64</td>
+<td>是</td>
+<td>订单id</td>
+</tr>
+<tr>
+<td>token_id</td>
+<td>string</td>
+<td>是</td>
+<td>提现币种</td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>是</td>
+<td>提现给那个地址</td>
+</tr>
+<tr>
+<td>memo</td>
+<td>string</td>
+<td>是</td>
+<td>memo标记</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>是</td>
+<td>提现金额</td>
+</tr>
+<tr>
+<td>tx_hash</td>
+<td>string</td>
+<td>是</td>
+<td>交易hash</td>
+</tr>
+<tr>
+<td>confirm</td>
+<td>int</td>
+<td>是</td>
+<td>确认数</td>
+</tr>
+<tr>
+<td>block_height</td>
+<td>int</td>
+<td>是</td>
+<td>区块高度</td>
+</tr>
+<tr>
+<td>block_time</td>
+<td>int</td>
+<td>是</td>
+<td>区块时间（秒）</td>
+</tr>
+</tbody></table>
+
+<p>响应结果：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>详情见返回类型表</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>string</td>
+<td>返回内容；失败时为错误信息</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+提币成功（提币交易已被区块链打包并确认执行成功）后调用此接口，为保证提币结果反馈可靠性，每次仅通知一笔提现处理结果。
+客服端负责保证提币执行后才调用此接口
+</aside>
+<h2 id='679af9d4b3'>定期对账</h2>
+<blockquote>
+<p>定期对账</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
+  -X GET
+  -H <span class="s2">"BWAAS-API-KEY: 123"</span>
+  -H <span class="s2">"BWAAS-API-TIMESTAMP: 1580887996488"</span>
+  -H <span class="s2">"BWAAS-API-SIGNATURE: f321da3"</span>
+  --data <span class="s1">'
+  {
+    "chain":"ABC",
+    "token_id": "ABV",
+    "total_deposit_amount": "100000.567",
+    "total_withdrawal_amount": "10000",
+    "last_block_height": 100000
+  }
+  '</span>
+  https://api.sandbox.bhex.com/v1/asset/verify
+</code></pre><pre class="highlight go"><code></code></pre><pre class="highlight python tab-python"><code></code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>返回结果：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>HTTP Request：</p>
+
+<p><code>POST /v1/asset/verify</code></p>
+
+<p>请求参数：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>是</td>
+<td>那个链</td>
+</tr>
+<tr>
+<td>token_id</td>
+<td>string</td>
+<td>是</td>
+<td>提现币种</td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>是</td>
+<td>提现给那个地址</td>
+</tr>
+<tr>
+<td>total_deposit_amount</td>
+<td>string</td>
+<td>是</td>
+<td>总充值金额</td>
+</tr>
+<tr>
+<td>total_withdrawal_amount</td>
+<td>string</td>
+<td>是</td>
+<td>总提现金额</td>
+</tr>
+<tr>
+<td>last_block_height</td>
+<td>int</td>
+<td>是</td>
+<td>对账最高区块高度</td>
+</tr>
+</tbody></table>
+
+<p>响应结果：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>详情见返回类型表</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>string</td>
+<td>返回内容；失败时为错误信息</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+定期进行资产对账，客服端定期（每小时或者每天进行对账，客户端根据链的出块时间，交易数量合理确定）向服务端反馈特定链上资产的充提情况（截止到asset_info中指定的区块高度），如果有未处理完成的提现订单，建议处理完成后进行对账。当服务端发现客户端反馈的资产信息与服务端不一致，将返回错误，并暂停该币种的充值提现。
+</aside>
 
       </div>
       <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="golang">golang</a>
+          </div>
       </div>
     </div>
   </body>

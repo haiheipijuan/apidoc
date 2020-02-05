@@ -542,7 +542,7 @@
 
 <aside class="notice">
 当检查到剩余地址小于特定值，比如100时，重新生成一批地址，并调用此接口添加充值地址，建议每次添加的充值地址不超过100个，
-如果需要导入大量地址，可以多次调用此接口
+如果需要导入大量地址，可以多次调用此接口。对于使用tag的公链，客户端可只调用此服务添加一个充值地址即可，由服务端给来分配tag供充值使用。
 </aside>
 <h2 id='40ef847a16'>充值到账通知</h2>
 <blockquote>
@@ -559,9 +559,8 @@
         "to": "addr2",
         "memo":"1234",
         "index": 1,
-        "asset": "bhop-asset",
+        "token_id": "ABC",
         "amount": "124.23",
-        "confirms": 1,
         "tx_hash": "1234",
         "block_height": 124,
         "block_time": 1234,
@@ -581,7 +580,7 @@
 </span></code></pre>
 <p>HTTP Request：</p>
 
-<p><code>POST /v1/ntofify/deposit</code></p>
+<p><code>POST /v1/notify/deposit</code></p>
 
 <p>请求参数：</p>
 
@@ -593,12 +592,6 @@
 <th>说明</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>chain</td>
-<td>string</td>
-<td>是</td>
-<td>那个链</td>
-</tr>
 <tr>
 <td>from</td>
 <td>string</td>
@@ -624,22 +617,16 @@
 <td>该充值所在交易中的位置</td>
 </tr>
 <tr>
-<td>asset</td>
+<td>token_id</td>
 <td>string</td>
-<td>否</td>
-<td>所属资产域</td>
+<td>是</td>
+<td>币种ID</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>string</td>
 <td>是</td>
 <td>充值金额</td>
-</tr>
-<tr>
-<td>confirms</td>
-<td>int</td>
-<td>是</td>
-<td>交易确认数</td>
 </tr>
 <tr>
 <td>tx_hash</td>
@@ -707,21 +694,21 @@
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
     </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">::[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
             </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
             </span><span class="s2">"token_id"</span><span class="p">:</span><span class="s2">"ABC"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bhexaddr1"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"memo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bhexmemo"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.34"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
             </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2345</span><span class="p">,</span><span class="w">
             </span><span class="s2">"token_id"</span><span class="p">:</span><span class="s2">"ABC"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bhexaddr1"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"memo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bhexmemo"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.34"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -739,6 +726,12 @@
 <th>说明</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>是</td>
+<td>那个链</td>
+</tr>
 </tbody></table>
 
 <p>响应结果：</p>
@@ -765,35 +758,19 @@
 <td>[]order</td>
 <td>待处理提现订单列表</td>
 </tr>
-<tr>
-<td>order_id</td>
-<td>int64</td>
-<td>订单id</td>
-</tr>
-<tr>
-<td>token_id</td>
-<td>string</td>
-<td>提现币种</td>
-</tr>
-<tr>
-<td>to</td>
-<td>string</td>
-<td>提现给那个地址</td>
-</tr>
-<tr>
-<td>memo</td>
-<td>string</td>
-<td>memo标记</td>
-</tr>
-<tr>
-<td>amount</td>
-<td>string</td>
-<td>提现金额</td>
-</tr>
 </tbody></table>
 
+<p>order_id| int64 | 订单id
+token_id| string| 提现币种
+to | string | 提现给那个地址
+memo | string | memo标记
+amount | string | 提现金额
+signature | string | 服务端签名</p>
+
 <aside class="notice">
-当有用户充值时，调用此接口，为保证充值可靠性，充值需要逐笔执行，超过1条的话可以多次调用此接口。客户端必须保证充币的真实可靠，因客户端通知错误充值带来的损失，由客户端执行者承担。
+应定期轮询是否有用户提现需求 ，轮询周期建议不大于出块间隔的十分之一。如出块时间为15s，建议每1s轮询一次，出块时间为15min的话，建议15s轮询一次。为对账方便，服务端返回提币金额为净提币金额，链处理所需的手续费由客户端管理。
+
+该接口每次最多返回20个未处理订单
 </aside>
 <h2 id='3366e0610d'>提现处理完成通知</h2>
 <blockquote>
@@ -806,14 +783,13 @@
   -H <span class="s2">"BWAAS-API-SIGNATURE: f321da3"</span>
   --data <span class="s1">'
   {
-    "chain":"ABC",
     "order_id": 1234,
     "token_id": "ABV",
     "to": "bhexaddr1",
     "memo": "bhexmemo",
     "amount": "12.34",
+    "fee": "0.001",
     "tx_hash": "0x5f99810a4154379e5b7951419a77250f020be54b78acb9a8747ff8b0ec75769d",
-    "confirm": 100,
     "block_height": 6581548,
     "block_time": 1540480255
   }
@@ -843,12 +819,6 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>chain</td>
-<td>string</td>
-<td>是</td>
-<td>那个链</td>
-</tr>
-<tr>
 <td>order_id</td>
 <td>int64</td>
 <td>是</td>
@@ -877,6 +847,12 @@
 <td>string</td>
 <td>是</td>
 <td>提现金额</td>
+</tr>
+<tr>
+<td>fee</td>
+<td>string</td>
+<td>是</td>
+<td>链上消耗手续费</td>
 </tr>
 <tr>
 <td>tx_hash</td>
@@ -940,10 +916,10 @@
   -H <span class="s2">"BWAAS-API-SIGNATURE: f321da3"</span>
   --data <span class="s1">'
   {
-    "chain":"ABC",
     "token_id": "ABV",
     "total_deposit_amount": "100000.567",
     "total_withdrawal_amount": "10000",
+    "total_fee_amount": "100",
     "last_block_height": 100000
   }
   '</span>
@@ -984,12 +960,6 @@
 <td>提现币种</td>
 </tr>
 <tr>
-<td>to</td>
-<td>string</td>
-<td>是</td>
-<td>提现给那个地址</td>
-</tr>
-<tr>
 <td>total_deposit_amount</td>
 <td>string</td>
 <td>是</td>
@@ -1000,6 +970,12 @@
 <td>string</td>
 <td>是</td>
 <td>总提现金额</td>
+</tr>
+<tr>
+<td>total_fee_amount</td>
+<td>string</td>
+<td>是</td>
+<td>总提现链上手续费金额</td>
 </tr>
 <tr>
 <td>last_block_height</td>

@@ -1,243 +1,509 @@
 ---
-title: CASHLINK Payment API
+title: BLUEHELIX BAAS API documentation
+
+language_tabs: # must be one of https://git.io/vQNgJ
+  - shell
+  - python
+  - javascript
+  - golang
 
 toc_footers:
-- <a href="index.html">Go to Home</a>
-- <a href="platform.html">Go to Platform API</a>
+- <a href="en.html">English</a>
+- <a href="index.html">中文</a>
 
 search: true
 ---
-# Payment API
 
-With the CASHLINK Payment API you can automate creating payment links for invoices, subscriptions and products. You can also receive notification when one of your links has been paid via webhooks.
+# 关于 BLUEHELIX BAAS
 
-Payment links have a unique, randomly-generated URL, for example `https://cashlink.de/business/+VX0GK5cvM1dO`. Share this URL with your customers on your website, via email, etc.  Use `whatsapp_url` when sending the link via WhatsApp. Using the default link will lead to issues with line breaks making it impossible to click the link.
+## 概述
+BLUEHELIX BAAS 提供REST风格的API（HTTPS + JSON)，方便BHOP客户自助接入第三方公链。
 
-## Test Mode
+在请求API接口之前，需要申请APIKEY, 使用ED25519算法生成公私钥对，用户自己保存私钥，公钥在上币申请时进行提交，得到APIKEY。
 
-You can test your payment integration with the test IBAN `DE89370400440532013000`. Payments from this IBAN will immediately succeed. Please note that with non-test IBANs, payments may take longer to process, so do not rely on real payments being confirmed immediately.
+## 申请方式
+- 工单系统
+- 邮箱 service@bhop.cloud
 
-## Invoice links
+## 上币申请材料
 
-> Example: Create invoice payment link
+参数|值
+-----------|------------
+币种ID | ABC
+所属公链| ABC
+代币精度| 8
+代币总量| 100亿
+IP地址 | 100.100.100.100 （用作IP白名单限制）
 
-```sh
+## 客户端代码示例
+提供五种编程语言（Python, JavaScript, Golang, JAVA, PHP)的用户端代码供用户使用 [https://github.com/bhexopen/thridparty-chain/clients/] (https://github.com/bhexopen/thridparty-chain/clients/)。
+
+# API签名认证
+
+## 域名
+- 测试环境：https://api.sandbox.bhex.com
+- 正式环境：https://api.baas.bhex.com
+
+## HTTP方法
+GET POST
+
+## TIMESTAMP
+访问 API 时的 UNIX EPOCH 时间戳 (精确到毫秒)
+
+## 完成示例
+
+请求：
+
+METHOD    | URL | TIMESTAMP
+-----------|-----------------------|----------------------
+POST |    https://api.sandbox.bhex.com/v1/test                   | 1580887996488
+
+参数见右：
+
+```
+{
+  "side": 1,
+  "amount": "100.0543",
+  "token_id": "ABC",
+  "tx_hash":"0x1234567890",
+  "block_height": 1000000
+}
+```
+在进行签名之前，需要对请求参数，按照key的首字母进行排序，得到如下数据： `POST|/v1/test/|1580887996488|amount=100.0543&block_height=1000000&side=1&token_id=ABC&tx_hash=0x1234567890`
+
+使用您本地生成的 private_key（私钥），对数据进行ED25519签名，并对二进制结果进行 Hex 编码, 得到最终签名signature。
+
+在HTTP请求时，写入header，即可通过校验:
+
+- BWAAS-API-KEY
+- BWAAS-API-SIGNATURE
+- BWAAS-API-TIMESTAMP
+
+
+# 接口列表
+
+## 获取剩余地址数量
+
+> 获取剩余地址数量
+
+```shell
 curl
-  -X POST
-  -H 'Content-Type: application/json'
-  -H 'X-Api-Key: USERKEY'
-  --data '{
-    "type": "invoice",
-    "amount": "12.34",
-    "subject": "Invoice no. 12345"
-  }'
-  https://cashlink.de/business/api/v1/cashlink
+  -X GET
+  -H "BWAAS-API-KEY: 123"
+  -H "BWAAS-API-TIMESTAMP: 1580887996488"
+  -H "BWAAS-API-SIGNATURE: f321da3"
+  https://api.sandbox.bhex.com/v1/address/count/unused
+?chain=ABC
 ```
 
-> Response:
+```golang
+```
+
+```python
+```
+
+```javascript
+```
+
+> 返回结果：
 
 ```json
 {
-  "public_id": "VX0GK5cvM1dO",
-  "url": "https://cashlink.de/business/+VX0GK5cvM1dO",
-  "whatsapp_url": "https://cashlink.de/business/l/VX0GK5cvM1dO"
+    "code": 10000,
+    "msg": "success",
+    "data": 1000
 }
 ```
 
-[Example invoice payment page](https://cashlink.de/business/demolink)
+HTTP Request：
 
-Invoice links can only be paid once. They are usually used to offer online payment for a single order.
+`GET /v1/address/count/unused`
 
-## Product links
 
-> Example: Create product link
+请求参数：
 
-```sh
+参数 | 类型| 必须| 说明
+-----------|-----------|-----------|-----------
+chain | string| 是|那个链
+
+响应结果：
+
+参数 | 类型| 说明
+-----------|-----------|-----------
+code | int| 详情见返回类型表
+msg | string | 返回内容；失败时为错误信息
+data |  | 返回具体数据
+
+<aside class="notice">
+检查是否需要重新生成地址时使用，需要定期调用，视新增用户速度决定。建议每小时调用一次。
+</aside>
+
+## 添加充值地址
+
+> 添加充值地址
+
+```shell
 curl
   -X POST
-  -H 'Content-Type: application/json'
-  -H 'X-Api-Key: USERKEY'
-  --data '{
-    "type": "product",
-    "amount": "12.34",
-    "subject": "Online Payments EBook"
-  }'
-  https://cashlink.de/business/api/v1/cashlink
-```
-
-[Example product payment page](https://cashlink.de/business/+FaHc8AKUGnmP)
-
-Product links are like invoice links but can be paid more than once. Use these to receive payment for products that you can sell many times.
-
-To make a purchase, payers must enter their full name and email address. You will receive this additional information in the `cashlink.paid` webhook. See [`cashlink.paid` event](#cashlink-paid-new-payment) for details.
-
-## Recurring payments
-
-> Example: Create recurring payment link
-
-```sh
-curl
-  -X POST
-  -H 'Content-Type: application/json'
-  -H 'X-Api-Key: USERKEY'
-  --data '{
-    "type": "subscription",
-    "subscription_plan": "monthly"
-    "amount": "12.34",
-    "subject": "Monthly plan",
-  }'
-  https://cashlink.de/business/api/v1/cashlink
-```
-
-[Example recurring payment page](https://cashlink.de/business/+g81C9EqWVqd8)
-
-Recurring payment links may be paid multiple times by different customers. Each time a recurring payment link is paid, the customer starts a subscription to pay the link's amount every interval (e.g. monthly).
-
-To start a subscription, payers must enter their full name and email address. You will receive this additional information in the `cashlink.paid` webhook. See [`cashlink.paid` event](#cashlink-paid-new-payment) for details.
-
-Recurring payments are restricted to the credit card and direct debit payment methods.
-
-Use the `subscription_plan` field to specify the payment interval. Choices:
-
-- `monthly`: Charge on the day someone signs up for the subscription, and then automatically charge every 4 weeks.
-  Example: User signs up on 2017/11/05, then the first charge will be on 2017/11/05, and next charge will be on 2017/12/05, etc.
-  If signup day of month is > 28, then all future charges will be made on the 28th of the following months.
-
-(Contact CASHLINK if you need other payment intervals.)
-
-## Asking for customer details
-
-> Example: Require email address and phone number from payers.
-
-```sh
-curl
-  -X POST
-  -H 'Content-Type: application/json'
-  -H 'X-Api-Key: USERKEY'
-  --data '{
-    "type": "product",
-    "amount": "12.34",
-    "subject": "Online Payments EBook",
-    "require_email": true,
-    "require_phone_number": true
-  }'
-  https://cashlink.de/business/api/v1/cashlink
-```
-
-[Example payment page asking for additional customer details](https://cashlink.de/business/+GS5WaAcRuDBV) – the page asks for all of the options below, with the freetext field used for "Customer ID".
-
-If you want your payers to have to provide their full name, email address, postal address, or phone number in order to pay, you may optionally pass one or more of the following boolean options:
-
-- `require_name`: Require first and last name.
-- `require_email`: Require email address.
-- `require_address`: Require postal address.
-- `require_phone_number`: Require phone number.
-
-You can also add a custom-labeled field:
-
-- `freetext_field_type`: Either `"short"` (HTML `<input>`) or `"long"` (HTML `<textarea>`).
-- `freetext_field_label`: Label and placeholder for the field, for example `"Customer ID"`.
-- `freetext_field_required`: True if customers must fill in the field, false otherwise.
-
-Additional form fields will appear on the payment page and will have to be filled by payers. Note that first name, last name and postal address are not validated (except for the requirement that they have to be non-empty). Email address and phone numbers are syntactically validated. Unless prefixed with a country prefix (e.g. +41) phone numbers are assumed to be German (+49).
-
-You will receive the information customers have put in the form fields in the `cashlink.paid` webhook. See [`cashlink.paid` event](#cashlink-paid-new-payment) for details. You can also see the data in your Dashboard.
-
-**Note:** Some payment link types (product, subscription) may already require ask for some or all of the customer details described in this section (name + email). The corresponding options above have no effect on these links.
-
-## Pre-allocated URLs
-
-> Example: Pre-allocate payment link URL
-
-```sh
-curl
-  -X POST
-  -H 'Content-Type: application/json'
-  -H 'X-Api-Key: USERKEY'
-  --data '{}'
-  https://cashlink.de/business/api/v1/cashlink-public-id
-```
-
-> Response:
-
-```json
-{
-  "signature": "VX0GK5cvM1dO:PygAVDcv2hFi4RqLxK3p0vs58r8",
-  "public_id": "VX0GK5cvM1dO",
-  "url": "https://cashlink.de/business/+VX0GK5cvM1dO",
-  "whatsapp_url": "https://cashlink.de/business/l/VX0GK5cvM1dO"
-}
-```
-
-You can retrieve a payment link `public_id`/URL before actually having created the payment link with subject and amount. This can be useful if you can only know the payment link's subject or amount after stuffing the URL into some third-party system.
-
-To pre-allocate a payment link URL, use the following API call to retrieve a signed `public_id`/URL:
-
-Note that at the point of this API response, the payment link hasn't actually been created yet, so the URL is inaccessible.
-
-
-> Example: Create a payment link with a pre-allocated URL
-
-```sh
-curl
-  -X POST
-  -H 'Content-Type: application/json'
-  -H 'X-Api-Key: USERKEY'
-  --data '{
-    "public_id": "VX0GK5cvM1dO:PygAVDcv2hFi4RqLxK3p0vs58r8",
-    "amount": "12.34",
-    "subject": "Invoice no. 12345"
-  }'
-  https://cashlink.de/business/api/v1/cashlink
-```
-
-To create a payment link with a pre-allocated URL, in the create payment link request, set the `public_id` field to the `signature` value from the pre-allocation response.
-
-
-# Payment notification
-
-## `cashlink.paid` – New payment
-
-> Example: `cashlink.paid` event data
-
-```json
-{
-  "event": "cashlink.paid",
-  "timestamp": "2017-10-09T13:11:03.661620",
-  "business": "utqztAwTcQKB",
-  "data": {
-    "is_test": false,
-    "public_id": "wxnfqAVVPWwZ",
-    "cashlink": {
-      "type": "invoice",
-      "public_id": "VX0GK5cvM1dO",
-      "subject": "Invoice no. 12345",
-      "amount": "12.34",
-      "amount_currency": "EUR"
-    },
-    "payer": {
-      "first_name": "Jane",
-      "last_name": "Doe",
-      "email": "jane@doe.com",
-      "phone_number": "+41123456789",
-      "address": "1 River Street, 12345 Metropolis",
-      "freetext": "Customer #9876"
+  -H "BWAAS-API-KEY: 123"
+  -H "BWAAS-API-TIMESTAMP: 1580887996488"
+  -H "BWAAS-API-SIGNATURE: f321da3"
+  -- data '
+    {
+      "chain":"ABC",
+      "addr_list":[
+        "111111",
+        "222222"
+      ]
     }
-  }
+  '
+  https://api.sandbox.bhex.com/v1/address/add
+```
+
+```golang
+```
+
+```python
+```
+
+```javascript
+```
+
+> 返回结果：
+
+```json
+{
+    "code": 10000,
+    "msg": "success",
+    "data": 1000
 }
 ```
 
-Sent when a payment has been successfully processed.
+HTTP Request：
 
-Test IBAN payments will have `is_test` set to true.
+`POST /v1/address/add`
 
-The `payer` field is available for product links and recurring payments, and if you activated any of the `require_*` options (see [Asking for customer details](#asking-for-customer-details)).
 
-Note that in the example, `"wxnfqAVVPWwZ"` is the payment public ID, and `"VX0GK5cvM1dO"` is the payment link public ID.
+请求参数：
 
-### Recurring payments
+参数 | 类型| 必须| 说明
+-----------|-----------|-----------|-----------
+chain | string| 是|那个链
+addr_list | []string | 是|地址列表
 
-For recurring payments, `cashlink.type` will be `"subscription"`, and the following extra fields will be available:
+响应结果：
 
-- `data.cashlink.next_charge`: scheduled next charge (`YYYY-MM-DDTHH:MM:SS.micro`)
-- `data.recurring_initial`: `true` if this was the initial payment of a subscription
+参数 | 类型| 说明
+-----------|-----------|-----------
+code | int| 详情见返回类型表
+msg | string | 返回内容；失败时为错误信息
+data |  | 返回具体数据
+
+
+<aside class="notice">
+当检查到剩余地址小于特定值，比如100时，重新生成一批地址，并调用此接口添加充值地址，建议每次添加的充值地址不超过100个，
+如果需要导入大量地址，可以多次调用此接口
+</aside>
+
+## 充值到账通知
+
+> 充值到账通知
+
+```shell
+curl
+  -X POST
+  -H "BWAAS-API-KEY: 123"
+  -H "BWAAS-API-TIMESTAMP: 1580887996488"
+  -H "BWAAS-API-SIGNATURE: f321da3"
+  -- data '
+    {
+        "from": "addr1",
+        "to": "addr2",
+        "memo":"1234",
+        "index": 1,
+        "asset": "bhop-asset",
+        "amount": "124.23",
+        "confirms": 1,
+        "tx_hash": "1234",
+        "block_height": 124,
+        "block_time": 1234,
+        "chain":"ABC"，
+    }
+  '
+  https://api.sandbox.bhex.com/v1/notify/deposit
+```
+
+```golang
+```
+
+```python
+```
+
+```javascript
+```
+
+> 返回结果：
+
+```json
+{
+    "code": 10000,
+    "msg": "success",
+    "data": 1000
+}
+```
+
+HTTP Request：
+
+`POST /v1/ntofify/deposit`
+
+请求参数：
+
+参数 | 类型| 必须| 说明
+-----------|-----------|-----------|-----------
+chain | string| 是|那个链
+from | string | 是|从哪个地址转出来
+to | string | 是|转给那个地址
+memo| string| 可选| memo标识
+index| int | 是| 该充值所在交易中的位置
+asset| string| 否| 所属资产域
+amount| string| 是| 充值金额
+confirms| int | 是| 交易确认数
+tx_hash| string|是 |交易hash
+block_height| int| 是| 区块高度
+block_time| int| 是| 区块时间（秒）
+
+
+响应结果：
+
+参数 | 类型| 说明
+-----------|-----------|-----------
+code | int| 详情见返回类型表
+msg | string | 返回内容；失败时为错误信息
+data |  | 返回具体数据
+
+<aside class="notice">
+当有用户充值时，调用此接口，为保证充值可靠性，充值需要逐笔执行，超过1条的话可以多次调用此接口。客户端必须保证充币的真实可靠，因客户端通知错误充值带来的损失，由客户端执行者承担。
+</aside>
+
+
+## 获取待处理提现请求
+
+> 获取待处理提现请求
+
+```shell
+curl
+  -X GET
+  -H "BWAAS-API-KEY: 123"
+  -H "BWAAS-API-TIMESTAMP: 1580887996488"
+  -H "BWAAS-API-SIGNATURE: f321da3"
+  https://api.sandbox.bhex.com/v1/withdrawal/orders
+```
+
+```golang
+```
+
+```python
+```
+
+```javascript
+```
+
+> 返回结果：
+
+```json
+{
+    "code": 10000,
+    "msg": "success",
+    "data":[
+      {
+            "order_id": 1234,
+            "token_id":"ABC",
+            "to": "bhexaddr1",
+            "memo": "bhexmemo",
+            "amount": "12.34"
+      },
+      {
+            "order_id": 2345,
+            "token_id":"ABC",
+            "to": "bhexaddr1",
+            "memo": "bhexmemo",
+            "amount": "12.34"
+      }
+    ]
+}
+```
+
+HTTP Request：
+
+`POST /v1/withdrawal/orders`
+
+请求参数：
+
+参数 | 类型| 必须| 说明
+-----------|-----------|-----------|-----------
+
+
+响应结果：
+
+参数 | 类型| 说明
+-----------|-----------|-----------
+code | int| 详情见返回类型表
+msg | string | 返回内容；失败时为错误信息
+data | []order | 待处理提现订单列表
+order_id| int64 | 订单id
+token_id| string| 提现币种
+to | string | 提现给那个地址
+memo | string | memo标记
+amount | string | 提现金额
+
+
+<aside class="notice">
+当有用户充值时，调用此接口，为保证充值可靠性，充值需要逐笔执行，超过1条的话可以多次调用此接口。客户端必须保证充币的真实可靠，因客户端通知错误充值带来的损失，由客户端执行者承担。
+</aside>
+
+## 提现处理完成通知
+
+> 提现处理完成通知
+
+```shell
+curl
+  -X GET
+  -H "BWAAS-API-KEY: 123"
+  -H "BWAAS-API-TIMESTAMP: 1580887996488"
+  -H "BWAAS-API-SIGNATURE: f321da3"
+  --data '
+  {
+    "chain":"ABC",
+    "order_id": 1234,
+    "token_id": "ABV",
+    "to": "bhexaddr1",
+    "memo": "bhexmemo",
+    "amount": "12.34",
+    "tx_hash": "0x5f99810a4154379e5b7951419a77250f020be54b78acb9a8747ff8b0ec75769d",
+    "confirm": 100,
+    "block_height": 6581548,
+    "block_time": 1540480255
+  }
+  '
+  https://api.sandbox.bhex.com/v1/notify/withdrawal
+```
+
+```golang
+```
+
+```python
+```
+
+```javascript
+```
+
+> 返回结果：
+
+```json
+{
+    "code": 10000,
+    "msg": "success",
+}
+```
+
+HTTP Request：
+
+`POST /v1/notify/withdrawal`
+
+请求参数：
+
+参数 | 类型| 必须| 说明
+-----------|-----------|-----------|-----------
+chain| string|是|那个链
+order_id| int64 | 是|订单id
+token_id| string| 是|提现币种
+to | string | 是|提现给那个地址
+memo | string | 是|memo标记
+amount | string | 是|提现金额
+tx_hash| string | 是|交易hash
+confirm|int|是|确认数
+block_height|int |是|区块高度
+block_time|int |是|区块时间（秒）
+
+响应结果：
+
+参数 | 类型| 说明
+-----------|-----------|-----------
+code | int| 详情见返回类型表
+msg | string | 返回内容；失败时为错误信息
+
+
+
+<aside class="notice">
+提币成功（提币交易已被区块链打包并确认执行成功）后调用此接口，为保证提币结果反馈可靠性，每次仅通知一笔提现处理结果。
+客服端负责保证提币执行后才调用此接口
+</aside>
+
+
+## 定期对账
+
+> 定期对账
+
+```shell
+curl
+  -X GET
+  -H "BWAAS-API-KEY: 123"
+  -H "BWAAS-API-TIMESTAMP: 1580887996488"
+  -H "BWAAS-API-SIGNATURE: f321da3"
+  --data '
+  {
+    "chain":"ABC",
+    "token_id": "ABV",
+    "total_deposit_amount": "100000.567",
+    "total_withdrawal_amount": "10000",
+    "last_block_height": 100000
+  }
+  '
+  https://api.sandbox.bhex.com/v1/asset/verify
+```
+
+```golang
+```
+
+```python
+```
+
+```javascript
+```
+
+> 返回结果：
+
+```json
+{
+    "code": 10000,
+    "msg": "success",
+}
+```
+
+HTTP Request：
+
+`POST /v1/asset/verify`
+
+请求参数：
+
+参数 | 类型| 必须| 说明
+-----------|-----------|-----------|-----------
+chain| string|是|那个链
+token_id| string| 是|提现币种
+to | string | 是|提现给那个地址
+total_deposit_amount | string | 是|总充值金额
+total_withdrawal_amount | string | 是|总提现金额
+last_block_height|int |是|对账最高区块高度
+
+响应结果：
+
+参数 | 类型| 说明
+-----------|-----------|-----------
+code | int| 详情见返回类型表
+msg | string | 返回内容；失败时为错误信息
+
+
+
+<aside class="notice">
+定期进行资产对账，客服端定期（每小时或者每天进行对账，客户端根据链的出块时间，交易数量合理确定）向服务端反馈特定链上资产的充提情况（截止到asset_info中指定的区块高度），如果有未处理完成的提现订单，建议处理完成后进行对账。当服务端发现客户端反馈的资产信息与服务端不一致，将返回错误，并暂停该币种的充值提现。
+</aside>

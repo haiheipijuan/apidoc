@@ -226,8 +226,7 @@ curl
         "amount": "124.23",
         "tx_hash": "1234",
         "block_height": 124,
-        "block_time": 1234,
-        "chain":"ABC"，
+        "block_time": 1234
     }
   '
   https://api.sandbox.bhex.com/v1/notify/deposit
@@ -351,18 +350,21 @@ code | int| 详情见返回类型表
 msg | string | 返回内容；失败时为错误信息
 data | []order | 待处理提现订单列表
 
+order 信息：
+
+参数 | 类型| 说明
+-----------|-----------|-----------
 order_id| int64 | 订单id
 token_id| string| 提现币种
 to | string | 提现给那个地址
 memo | string | memo标记
 amount | string | 提现金额
-signature | string | 服务端签名
 
 
 <aside class="notice">
 应定期轮询是否有用户提现需求 ，轮询周期建议不大于出块间隔的十分之一。如出块时间为15s，建议每1s轮询一次，出块时间为15min的话，建议15s轮询一次。为对账方便，服务端返回提币金额为净提币金额，链处理所需的手续费由客户端管理。
 
-该接口每次最多返回20个未处理订单
+该接口每次最多返回50个未处理订单。
 </aside>
 
 ## 提现处理完成通知

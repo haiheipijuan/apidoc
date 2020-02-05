@@ -202,8 +202,9 @@ data |  | 返回具体数据
 
 <aside class="notice">
 当检查到剩余地址小于特定值，比如100时，重新生成一批地址，并调用此接口添加充值地址，建议每次添加的充值地址不超过100个，
-如果需要导入大量地址，可以多次调用此接口
+如果需要导入大量地址，可以多次调用此接口。对于使用tag的公链，客户端可只调用此服务添加一个充值地址即可，由服务端给来分配tag供充值使用。
 </aside>
+
 
 ## 充值到账通知
 
@@ -221,9 +222,8 @@ curl
         "to": "addr2",
         "memo":"1234",
         "index": 1,
-        "asset": "bhop-asset",
+        "token_id": "ABC",
         "amount": "124.23",
-        "confirms": 1,
         "tx_hash": "1234",
         "block_height": 124,
         "block_time": 1234,
@@ -254,20 +254,18 @@ curl
 
 HTTP Request：
 
-`POST /v1/ntofify/deposit`
+`POST /v1/notify/deposit`
 
 请求参数：
 
 参数 | 类型| 必须| 说明
 -----------|-----------|-----------|-----------
-chain | string| 是|那个链
 from | string | 是|从哪个地址转出来
 to | string | 是|转给那个地址
 memo| string| 可选| memo标识
 index| int | 是| 该充值所在交易中的位置
-asset| string| 否| 所属资产域
+token_id| string| 是| 币种ID
 amount| string| 是| 充值金额
-confirms| int | 是| 交易确认数
 tx_hash| string|是 |交易hash
 block_height| int| 是| 区块高度
 block_time| int| 是| 区块时间（秒）
@@ -284,6 +282,7 @@ data |  | 返回具体数据
 <aside class="notice">
 当有用户充值时，调用此接口，为保证充值可靠性，充值需要逐笔执行，超过1条的话可以多次调用此接口。客户端必须保证充币的真实可靠，因客户端通知错误充值带来的损失，由客户端执行者承担。
 </aside>
+
 
 
 ## 获取待处理提现请求
@@ -314,21 +313,21 @@ curl
 {
     "code": 10000,
     "msg": "success",
-    "data":[
-      {
+    "data"::[
+        {
             "order_id": 1234,
             "token_id":"ABC",
             "to": "bhexaddr1",
             "memo": "bhexmemo",
             "amount": "12.34"
-      },
-      {
+        },
+        {
             "order_id": 2345,
             "token_id":"ABC",
             "to": "bhexaddr1",
             "memo": "bhexmemo",
             "amount": "12.34"
-      }
+        }
     ]
 }
 ```
@@ -341,6 +340,7 @@ HTTP Request：
 
 参数 | 类型| 必须| 说明
 -----------|-----------|-----------|-----------
+chain | string| 是|那个链
 
 
 响应结果：
@@ -350,15 +350,19 @@ HTTP Request：
 code | int| 详情见返回类型表
 msg | string | 返回内容；失败时为错误信息
 data | []order | 待处理提现订单列表
+
 order_id| int64 | 订单id
 token_id| string| 提现币种
 to | string | 提现给那个地址
 memo | string | memo标记
 amount | string | 提现金额
+signature | string | 服务端签名
 
 
 <aside class="notice">
-当有用户充值时，调用此接口，为保证充值可靠性，充值需要逐笔执行，超过1条的话可以多次调用此接口。客户端必须保证充币的真实可靠，因客户端通知错误充值带来的损失，由客户端执行者承担。
+应定期轮询是否有用户提现需求 ，轮询周期建议不大于出块间隔的十分之一。如出块时间为15s，建议每1s轮询一次，出块时间为15min的话，建议15s轮询一次。为对账方便，服务端返回提币金额为净提币金额，链处理所需的手续费由客户端管理。
+
+该接口每次最多返回20个未处理订单
 </aside>
 
 ## 提现处理完成通知
@@ -373,14 +377,13 @@ curl
   -H "BWAAS-API-SIGNATURE: f321da3"
   --data '
   {
-    "chain":"ABC",
     "order_id": 1234,
     "token_id": "ABV",
     "to": "bhexaddr1",
     "memo": "bhexmemo",
     "amount": "12.34",
+    "fee": "0.001",
     "tx_hash": "0x5f99810a4154379e5b7951419a77250f020be54b78acb9a8747ff8b0ec75769d",
-    "confirm": 100,
     "block_height": 6581548,
     "block_time": 1540480255
   }
@@ -414,12 +417,12 @@ HTTP Request：
 
 参数 | 类型| 必须| 说明
 -----------|-----------|-----------|-----------
-chain| string|是|那个链
 order_id| int64 | 是|订单id
 token_id| string| 是|提现币种
 to | string | 是|提现给那个地址
 memo | string | 是|memo标记
 amount | string | 是|提现金额
+fee | string | 是|链上消耗手续费
 tx_hash| string | 是|交易hash
 confirm|int|是|确认数
 block_height|int |是|区块高度
@@ -452,10 +455,10 @@ curl
   -H "BWAAS-API-SIGNATURE: f321da3"
   --data '
   {
-    "chain":"ABC",
     "token_id": "ABV",
     "total_deposit_amount": "100000.567",
     "total_withdrawal_amount": "10000",
+    "total_fee_amount": "100",
     "last_block_height": 100000
   }
   '
@@ -490,9 +493,9 @@ HTTP Request：
 -----------|-----------|-----------|-----------
 chain| string|是|那个链
 token_id| string| 是|提现币种
-to | string | 是|提现给那个地址
 total_deposit_amount | string | 是|总充值金额
 total_withdrawal_amount | string | 是|总提现金额
+total_fee_amount | string | 是|总提现链上手续费金额
 last_block_height|int |是|对账最高区块高度
 
 响应结果：

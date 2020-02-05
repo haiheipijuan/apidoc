@@ -487,7 +487,6 @@ HTTP Request：
 
 参数 | 类型| 必须| 说明
 -----------|-----------|-----------|-----------
-chain| string|是|那个链
 token_id| string| 是|提现币种
 total_deposit_amount | string | 是|总充值金额
 total_withdrawal_amount | string | 是|总提现金额

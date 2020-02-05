@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>CASHLINK Payment API</title>
+    <title>BLUEHELIX BAAS API documentation</title>
 
     <!-- Google Optimize -->
     <style>.async-hide{opacity:0!important}</style><script>(function(a,s,y,n,c,h,i,d,e){s.className+=' '+y;h.start=1*new Date; h.end=i=function(){s.className=s.className.replace(RegExp(' ?'+y),'')}; (a[n]=a[n]||[]).hide=h;setTimeout(function(){i();h.end=null},c);h.timeout=c; })(window,document.documentElement,'async-hide','dataLayer',4000, {'GTM-P56KNPS':true});</script>
@@ -209,7 +209,7 @@
       <script src="javascripts/all-c5541673.js"></script>
   </head>
 
-  <body class="en" data-languages="[]">
+  <body class="en" data-languages="[&quot;shell&quot;,&quot;python&quot;,&quot;javascript&quot;,&quot;golang&quot;]">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P56KNPS" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
@@ -223,266 +223,825 @@
       <a href="https://docs.cashlink.io">
         <img src="images/logo-9df24636.png" class="logo" alt="Logo" />
       </a>
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="golang">golang</a>
+        </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
         </div>
         <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
-            <a href="#payment-api" class="toc-h1 toc-link" data-title="Payment API">Payment API</a>
+            <a href="#bluehelix-baas" class="toc-h1 toc-link" data-title="关于 BLUEHELIX BAAS">关于 BLUEHELIX BAAS</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#test-mode" class="toc-h2 toc-link" data-title="Test Mode">Test Mode</a>
+                    <a href="#153042ed9e" class="toc-h2 toc-link" data-title="概述">概述</a>
                   </li>
                   <li>
-                    <a href="#invoice-links" class="toc-h2 toc-link" data-title="Invoice links">Invoice links</a>
+                    <a href="#c3b3224d14" class="toc-h2 toc-link" data-title="申请方式">申请方式</a>
                   </li>
                   <li>
-                    <a href="#product-links" class="toc-h2 toc-link" data-title="Product links">Product links</a>
+                    <a href="#ebaf09501a" class="toc-h2 toc-link" data-title="上币申请材料">上币申请材料</a>
                   </li>
                   <li>
-                    <a href="#recurring-payments" class="toc-h2 toc-link" data-title="Recurring payments">Recurring payments</a>
-                  </li>
-                  <li>
-                    <a href="#asking-for-customer-details" class="toc-h2 toc-link" data-title="Asking for customer details">Asking for customer details</a>
-                  </li>
-                  <li>
-                    <a href="#pre-allocated-urls" class="toc-h2 toc-link" data-title="Pre-allocated URLs">Pre-allocated URLs</a>
+                    <a href="#1138396d9a" class="toc-h2 toc-link" data-title="客户端代码示例">客户端代码示例</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#payment-notification" class="toc-h1 toc-link" data-title="Payment notification">Payment notification</a>
+            <a href="#api" class="toc-h1 toc-link" data-title="API签名认证">API签名认证</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#cashlink-paid-new-payment" class="toc-h2 toc-link" data-title="<code>cashlink.paid</code> – New payment"><code>cashlink.paid</code> – New payment</a>
+                    <a href="#282d68464d" class="toc-h2 toc-link" data-title="域名">域名</a>
+                  </li>
+                  <li>
+                    <a href="#http" class="toc-h2 toc-link" data-title="HTTP方法">HTTP方法</a>
+                  </li>
+                  <li>
+                    <a href="#timestamp" class="toc-h2 toc-link" data-title="TIMESTAMP">TIMESTAMP</a>
+                  </li>
+                  <li>
+                    <a href="#efd228142a" class="toc-h2 toc-link" data-title="完成示例">完成示例</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#14f70b1746" class="toc-h1 toc-link" data-title="接口列表">接口列表</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#412366bdb1" class="toc-h2 toc-link" data-title="获取剩余地址数量">获取剩余地址数量</a>
+                  </li>
+                  <li>
+                    <a href="#4853ea161a" class="toc-h2 toc-link" data-title="添加充值地址">添加充值地址</a>
+                  </li>
+                  <li>
+                    <a href="#40ef847a16" class="toc-h2 toc-link" data-title="充值到账通知">充值到账通知</a>
+                  </li>
+                  <li>
+                    <a href="#82d9036fa2" class="toc-h2 toc-link" data-title="获取待处理提现请求">获取待处理提现请求</a>
+                  </li>
+                  <li>
+                    <a href="#3366e0610d" class="toc-h2 toc-link" data-title="提现处理完成通知">提现处理完成通知</a>
+                  </li>
+                  <li>
+                    <a href="#679af9d4b3" class="toc-h2 toc-link" data-title="定期对账">定期对账</a>
                   </li>
               </ul>
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href="index.html">Go to Home</a></li>
-            <li><a href="platform.html">Go to Platform API</a></li>
+            <li><a href="en.html">English</a></li>
+            <li><a href="index.html">中文</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='payment-api'>Payment API</h1>
-<p>With the CASHLINK Payment API you can automate creating payment links for invoices, subscriptions and products. You can also receive notification when one of your links has been paid via webhooks.</p>
+        <h1 id='bluehelix-baas'>关于 BLUEHELIX BAAS</h1><h2 id='153042ed9e'>概述</h2>
+<p>BLUEHELIX BAAS 提供REST风格的API（HTTPS + JSON)，方便BHOP客户自助接入第三方公链。</p>
 
-<p>Payment links have a unique, randomly-generated URL, for example <code>https://cashlink.de/business/+VX0GK5cvM1dO</code>. Share this URL with your customers on your website, via email, etc.  Use <code>whatsapp_url</code> when sending the link via WhatsApp. Using the default link will lead to issues with line breaks making it impossible to click the link.</p>
-<h2 id='test-mode'>Test Mode</h2>
-<p>You can test your payment integration with the test IBAN <code>DE89370400440532013000</code>. Payments from this IBAN will immediately succeed. Please note that with non-test IBANs, payments may take longer to process, so do not rely on real payments being confirmed immediately.</p>
-<h2 id='invoice-links'>Invoice links</h2>
-<blockquote>
-<p>Example: Create invoice payment link</p>
-</blockquote>
-<pre class="highlight sh tab-shell"><code>curl
-  -X POST
-  -H <span class="s1">'Content-Type: application/json'</span>
-  -H <span class="s1">'X-Api-Key: USERKEY'</span>
-  --data <span class="s1">'{
-    "type": "invoice",
-    "amount": "12.34",
-    "subject": "Invoice no. 12345"
-  }'</span>
-  https://cashlink.de/business/api/v1/cashlink
+<p>在请求API接口之前，需要申请APIKEY, 使用ED25519算法生成公私钥对，用户自己保存私钥，公钥在上币申请时进行提交，得到APIKEY。</p>
+<h2 id='c3b3224d14'>申请方式</h2>
+<ul>
+<li>工单系统</li>
+<li>邮箱 service@bhop.cloud</li>
+</ul>
+<h2 id='ebaf09501a'>上币申请材料</h2>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>币种ID</td>
+<td>ABC</td>
+</tr>
+<tr>
+<td>所属公链</td>
+<td>ABC</td>
+</tr>
+<tr>
+<td>代币精度</td>
+<td>8</td>
+</tr>
+<tr>
+<td>代币总量</td>
+<td>100亿</td>
+</tr>
+<tr>
+<td>IP地址</td>
+<td>100.100.100.100 （用作IP白名单限制）</td>
+</tr>
+</tbody></table>
+<h2 id='1138396d9a'>客户端代码示例</h2>
+<p>提供五种编程语言（Python, JavaScript, Golang, JAVA, PHP)的用户端代码供用户使用 <a href="https://github.com/bhexopen/thridparty-chain/clients/">https://github.com/bhexopen/thridparty-chain/clients/</a>。</p>
+<h1 id='api'>API签名认证</h1><h2 id='282d68464d'>域名</h2>
+<ul>
+<li>测试环境：https://api.sandbox.bhex.com</li>
+<li>正式环境：https://api.baas.bhex.com</li>
+</ul>
+<h2 id='http'>HTTP方法</h2>
+<p>GET POST</p>
+<h2 id='timestamp'>TIMESTAMP</h2>
+<p>访问 API 时的 UNIX EPOCH 时间戳 (精确到毫秒)</p>
+<h2 id='efd228142a'>完成示例</h2>
+<p>请求：</p>
+
+<table><thead>
+<tr>
+<th>METHOD</th>
+<th>URL</th>
+<th>TIMESTAMP</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>POST</td>
+<td>https://api.sandbox.bhex.com/v1/test</td>
+<td>1580887996488</td>
+</tr>
+</tbody></table>
+
+<p>参数见右：</p>
+<pre class="highlight plaintext"><code>{
+  "side": 1,
+  "amount": "100.0543",
+  "token_id": "ABC",
+  "tx_hash":"0x1234567890",
+  "block_height": 1000000
+}
 </code></pre>
+<p>在进行签名之前，需要对请求参数，按照key的首字母进行排序，得到如下数据： <code>POST|/v1/test/|1580887996488|amount=100.0543&amp;block_height=1000000&amp;side=1&amp;token_id=ABC&amp;tx_hash=0x1234567890</code></p>
+
+<p>使用您本地生成的 private_key（私钥），对数据进行ED25519签名，并对二进制结果进行 Hex 编码, 得到最终签名signature。</p>
+
+<p>在HTTP请求时，写入header，即可通过校验:</p>
+
+<ul>
+<li>BWAAS-API-KEY</li>
+<li>BWAAS-API-SIGNATURE</li>
+<li>BWAAS-API-TIMESTAMP</li>
+</ul>
+<h1 id='14f70b1746'>接口列表</h1><h2 id='412366bdb1'>获取剩余地址数量</h2>
 <blockquote>
-<p>Response:</p>
+<p>获取剩余地址数量</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
+  -X GET
+  -H <span class="s2">"BWAAS-API-KEY: 123"</span>
+  -H <span class="s2">"BWAAS-API-TIMESTAMP: 1580887996488"</span>
+  -H <span class="s2">"BWAAS-API-SIGNATURE: f321da3"</span>
+  https://api.sandbox.bhex.com/v1/address/count/unused
+?chain<span class="o">=</span>ABC
+</code></pre><pre class="highlight go"><code></code></pre><pre class="highlight python tab-python"><code></code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>返回结果：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"public_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cashlink.de/business/+VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"whatsapp_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cashlink.de/business/l/VX0GK5cvM1dO"</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><a href="https://cashlink.de/business/demolink">Example invoice payment page</a></p>
+<p>HTTP Request：</p>
 
-<p>Invoice links can only be paid once. They are usually used to offer online payment for a single order.</p>
-<h2 id='product-links'>Product links</h2>
+<p><code>GET /v1/address/count/unused</code></p>
+
+<p>请求参数：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>是</td>
+<td>那个链</td>
+</tr>
+</tbody></table>
+
+<p>响应结果：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>详情见返回类型表</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>string</td>
+<td>返回内容；失败时为错误信息</td>
+</tr>
+<tr>
+<td>data</td>
+<td></td>
+<td>返回具体数据</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+检查是否需要重新生成地址时使用，需要定期调用，视新增用户速度决定。建议每小时调用一次。
+</aside>
+<h2 id='4853ea161a'>添加充值地址</h2>
 <blockquote>
-<p>Example: Create product link</p>
+<p>添加充值地址</p>
 </blockquote>
-<pre class="highlight sh tab-shell"><code>curl
+<pre class="highlight shell tab-shell"><code>curl
   -X POST
-  -H <span class="s1">'Content-Type: application/json'</span>
-  -H <span class="s1">'X-Api-Key: USERKEY'</span>
-  --data <span class="s1">'{
-    "type": "product",
-    "amount": "12.34",
-    "subject": "Online Payments EBook"
-  }'</span>
-  https://cashlink.de/business/api/v1/cashlink
-</code></pre>
-<p><a href="https://cashlink.de/business/+FaHc8AKUGnmP">Example product payment page</a></p>
-
-<p>Product links are like invoice links but can be paid more than once. Use these to receive payment for products that you can sell many times.</p>
-
-<p>To make a purchase, payers must enter their full name and email address. You will receive this additional information in the <code>cashlink.paid</code> webhook. See <a href="#cashlink-paid-new-payment"><code>cashlink.paid</code> event</a> for details.</p>
-<h2 id='recurring-payments'>Recurring payments</h2>
+  -H <span class="s2">"BWAAS-API-KEY: 123"</span>
+  -H <span class="s2">"BWAAS-API-TIMESTAMP: 1580887996488"</span>
+  -H <span class="s2">"BWAAS-API-SIGNATURE: f321da3"</span>
+  -- data <span class="s1">'
+    {
+      "chain":"ABC",
+      "addr_list":[
+        "111111",
+        "222222"
+      ]
+    }
+  '</span>
+  https://api.sandbox.bhex.com/v1/address/add
+</code></pre><pre class="highlight go"><code></code></pre><pre class="highlight python tab-python"><code></code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
 <blockquote>
-<p>Example: Create recurring payment link</p>
-</blockquote>
-<pre class="highlight sh tab-shell"><code>curl
-  -X POST
-  -H <span class="s1">'Content-Type: application/json'</span>
-  -H <span class="s1">'X-Api-Key: USERKEY'</span>
-  --data <span class="s1">'{
-    "type": "subscription",
-    "subscription_plan": "monthly"
-    "amount": "12.34",
-    "subject": "Monthly plan",
-  }'</span>
-  https://cashlink.de/business/api/v1/cashlink
-</code></pre>
-<p><a href="https://cashlink.de/business/+g81C9EqWVqd8">Example recurring payment page</a></p>
-
-<p>Recurring payment links may be paid multiple times by different customers. Each time a recurring payment link is paid, the customer starts a subscription to pay the link&#39;s amount every interval (e.g. monthly).</p>
-
-<p>To start a subscription, payers must enter their full name and email address. You will receive this additional information in the <code>cashlink.paid</code> webhook. See <a href="#cashlink-paid-new-payment"><code>cashlink.paid</code> event</a> for details.</p>
-
-<p>Recurring payments are restricted to the credit card and direct debit payment methods.</p>
-
-<p>Use the <code>subscription_plan</code> field to specify the payment interval. Choices:</p>
-
-<ul>
-<li><code>monthly</code>: Charge on the day someone signs up for the subscription, and then automatically charge every 4 weeks.
-Example: User signs up on 2017/11/05, then the first charge will be on 2017/11/05, and next charge will be on 2017/12/05, etc.
-If signup day of month is &gt; 28, then all future charges will be made on the 28th of the following months.</li>
-</ul>
-
-<p>(Contact CASHLINK if you need other payment intervals.)</p>
-<h2 id='asking-for-customer-details'>Asking for customer details</h2>
-<blockquote>
-<p>Example: Require email address and phone number from payers.</p>
-</blockquote>
-<pre class="highlight sh tab-shell"><code>curl
-  -X POST
-  -H <span class="s1">'Content-Type: application/json'</span>
-  -H <span class="s1">'X-Api-Key: USERKEY'</span>
-  --data <span class="s1">'{
-    "type": "product",
-    "amount": "12.34",
-    "subject": "Online Payments EBook",
-    "require_email": true,
-    "require_phone_number": true
-  }'</span>
-  https://cashlink.de/business/api/v1/cashlink
-</code></pre>
-<p><a href="https://cashlink.de/business/+GS5WaAcRuDBV">Example payment page asking for additional customer details</a> – the page asks for all of the options below, with the freetext field used for &quot;Customer ID&quot;.</p>
-
-<p>If you want your payers to have to provide their full name, email address, postal address, or phone number in order to pay, you may optionally pass one or more of the following boolean options:</p>
-
-<ul>
-<li><code>require_name</code>: Require first and last name.</li>
-<li><code>require_email</code>: Require email address.</li>
-<li><code>require_address</code>: Require postal address.</li>
-<li><code>require_phone_number</code>: Require phone number.</li>
-</ul>
-
-<p>You can also add a custom-labeled field:</p>
-
-<ul>
-<li><code>freetext_field_type</code>: Either <code>&quot;short&quot;</code> (HTML <code>&lt;input&gt;</code>) or <code>&quot;long&quot;</code> (HTML <code>&lt;textarea&gt;</code>).</li>
-<li><code>freetext_field_label</code>: Label and placeholder for the field, for example <code>&quot;Customer ID&quot;</code>.</li>
-<li><code>freetext_field_required</code>: True if customers must fill in the field, false otherwise.</li>
-</ul>
-
-<p>Additional form fields will appear on the payment page and will have to be filled by payers. Note that first name, last name and postal address are not validated (except for the requirement that they have to be non-empty). Email address and phone numbers are syntactically validated. Unless prefixed with a country prefix (e.g. +41) phone numbers are assumed to be German (+49).</p>
-
-<p>You will receive the information customers have put in the form fields in the <code>cashlink.paid</code> webhook. See <a href="#cashlink-paid-new-payment"><code>cashlink.paid</code> event</a> for details. You can also see the data in your Dashboard.</p>
-
-<p><strong>Note:</strong> Some payment link types (product, subscription) may already require ask for some or all of the customer details described in this section (name + email). The corresponding options above have no effect on these links.</p>
-<h2 id='pre-allocated-urls'>Pre-allocated URLs</h2>
-<blockquote>
-<p>Example: Pre-allocate payment link URL</p>
-</blockquote>
-<pre class="highlight sh tab-shell"><code>curl
-  -X POST
-  -H <span class="s1">'Content-Type: application/json'</span>
-  -H <span class="s1">'X-Api-Key: USERKEY'</span>
-  --data <span class="s1">'{}'</span>
-  https://cashlink.de/business/api/v1/cashlink-public-id
-</code></pre>
-<blockquote>
-<p>Response:</p>
+<p>返回结果：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VX0GK5cvM1dO:PygAVDcv2hFi4RqLxK3p0vs58r8"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"public_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cashlink.de/business/+VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"whatsapp_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cashlink.de/business/l/VX0GK5cvM1dO"</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>You can retrieve a payment link <code>public_id</code>/URL before actually having created the payment link with subject and amount. This can be useful if you can only know the payment link&#39;s subject or amount after stuffing the URL into some third-party system.</p>
+<p>HTTP Request：</p>
 
-<p>To pre-allocate a payment link URL, use the following API call to retrieve a signed <code>public_id</code>/URL:</p>
+<p><code>POST /v1/address/add</code></p>
 
-<p>Note that at the point of this API response, the payment link hasn&#39;t actually been created yet, so the URL is inaccessible.</p>
+<p>请求参数：</p>
 
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>是</td>
+<td>那个链</td>
+</tr>
+<tr>
+<td>addr_list</td>
+<td>[]string</td>
+<td>是</td>
+<td>地址列表</td>
+</tr>
+</tbody></table>
+
+<p>响应结果：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>详情见返回类型表</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>string</td>
+<td>返回内容；失败时为错误信息</td>
+</tr>
+<tr>
+<td>data</td>
+<td></td>
+<td>返回具体数据</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+当检查到剩余地址小于特定值，比如100时，重新生成一批地址，并调用此接口添加充值地址，建议每次添加的充值地址不超过100个，
+如果需要导入大量地址，可以多次调用此接口
+</aside>
+<h2 id='40ef847a16'>充值到账通知</h2>
 <blockquote>
-<p>Example: Create a payment link with a pre-allocated URL</p>
+<p>充值到账通知</p>
 </blockquote>
-<pre class="highlight sh tab-shell"><code>curl
+<pre class="highlight shell tab-shell"><code>curl
   -X POST
-  -H <span class="s1">'Content-Type: application/json'</span>
-  -H <span class="s1">'X-Api-Key: USERKEY'</span>
-  --data <span class="s1">'{
-    "public_id": "VX0GK5cvM1dO:PygAVDcv2hFi4RqLxK3p0vs58r8",
-    "amount": "12.34",
-    "subject": "Invoice no. 12345"
-  }'</span>
-  https://cashlink.de/business/api/v1/cashlink
-</code></pre>
-<p>To create a payment link with a pre-allocated URL, in the create payment link request, set the <code>public_id</code> field to the <code>signature</code> value from the pre-allocation response.</p>
-<h1 id='payment-notification'>Payment notification</h1><h2 id='cashlink-paid-new-payment'><code>cashlink.paid</code> – New payment</h2>
+  -H <span class="s2">"BWAAS-API-KEY: 123"</span>
+  -H <span class="s2">"BWAAS-API-TIMESTAMP: 1580887996488"</span>
+  -H <span class="s2">"BWAAS-API-SIGNATURE: f321da3"</span>
+  -- data <span class="s1">'
+    {
+        "from": "addr1",
+        "to": "addr2",
+        "memo":"1234",
+        "index": 1,
+        "asset": "bhop-asset",
+        "amount": "124.23",
+        "confirms": 1,
+        "tx_hash": "1234",
+        "block_height": 124,
+        "block_time": 1234,
+        "chain":"ABC"，
+    }
+  '</span>
+  https://api.sandbox.bhex.com/v1/notify/deposit
+</code></pre><pre class="highlight go"><code></code></pre><pre class="highlight python tab-python"><code></code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
 <blockquote>
-<p>Example: <code>cashlink.paid</code> event data</p>
+<p>返回结果：</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cashlink.paid"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-09T13:11:03.661620"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"business"</span><span class="p">:</span><span class="w"> </span><span class="s2">"utqztAwTcQKB"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"is_test"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"public_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wxnfqAVVPWwZ"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cashlink"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invoice"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"public_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VX0GK5cvM1dO"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invoice no. 12345"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.34"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"amount_currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EUR"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"payer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jane"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jane@doe.com"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"phone_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+41123456789"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1 River Street, 12345 Metropolis"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"freetext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer #9876"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Sent when a payment has been successfully processed.</p>
+<p>HTTP Request：</p>
 
-<p>Test IBAN payments will have <code>is_test</code> set to true.</p>
+<p><code>POST /v1/ntofify/deposit</code></p>
 
-<p>The <code>payer</code> field is available for product links and recurring payments, and if you activated any of the <code>require_*</code> options (see <a href="#asking-for-customer-details">Asking for customer details</a>).</p>
+<p>请求参数：</p>
 
-<p>Note that in the example, <code>&quot;wxnfqAVVPWwZ&quot;</code> is the payment public ID, and <code>&quot;VX0GK5cvM1dO&quot;</code> is the payment link public ID.</p>
-<h3 id='recurring-payments-2'>Recurring payments</h3>
-<p>For recurring payments, <code>cashlink.type</code> will be <code>&quot;subscription&quot;</code>, and the following extra fields will be available:</p>
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>是</td>
+<td>那个链</td>
+</tr>
+<tr>
+<td>from</td>
+<td>string</td>
+<td>是</td>
+<td>从哪个地址转出来</td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>是</td>
+<td>转给那个地址</td>
+</tr>
+<tr>
+<td>memo</td>
+<td>string</td>
+<td>可选</td>
+<td>memo标识</td>
+</tr>
+<tr>
+<td>index</td>
+<td>int</td>
+<td>是</td>
+<td>该充值所在交易中的位置</td>
+</tr>
+<tr>
+<td>asset</td>
+<td>string</td>
+<td>否</td>
+<td>所属资产域</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>是</td>
+<td>充值金额</td>
+</tr>
+<tr>
+<td>confirms</td>
+<td>int</td>
+<td>是</td>
+<td>交易确认数</td>
+</tr>
+<tr>
+<td>tx_hash</td>
+<td>string</td>
+<td>是</td>
+<td>交易hash</td>
+</tr>
+<tr>
+<td>block_height</td>
+<td>int</td>
+<td>是</td>
+<td>区块高度</td>
+</tr>
+<tr>
+<td>block_time</td>
+<td>int</td>
+<td>是</td>
+<td>区块时间（秒）</td>
+</tr>
+</tbody></table>
 
-<ul>
-<li><code>data.cashlink.next_charge</code>: scheduled next charge (<code>YYYY-MM-DDTHH:MM:SS.micro</code>)</li>
-<li><code>data.recurring_initial</code>: <code>true</code> if this was the initial payment of a subscription</li>
-</ul>
+<p>响应结果：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>详情见返回类型表</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>string</td>
+<td>返回内容；失败时为错误信息</td>
+</tr>
+<tr>
+<td>data</td>
+<td></td>
+<td>返回具体数据</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+当有用户充值时，调用此接口，为保证充值可靠性，充值需要逐笔执行，超过1条的话可以多次调用此接口。客户端必须保证充币的真实可靠，因客户端通知错误充值带来的损失，由客户端执行者承担。
+</aside>
+<h2 id='82d9036fa2'>获取待处理提现请求</h2>
+<blockquote>
+<p>获取待处理提现请求</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
+  -X GET
+  -H <span class="s2">"BWAAS-API-KEY: 123"</span>
+  -H <span class="s2">"BWAAS-API-TIMESTAMP: 1580887996488"</span>
+  -H <span class="s2">"BWAAS-API-SIGNATURE: f321da3"</span>
+  https://api.sandbox.bhex.com/v1/withdrawal/orders
+</code></pre><pre class="highlight go"><code></code></pre><pre class="highlight python tab-python"><code></code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>返回结果：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1234</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"token_id"</span><span class="p">:</span><span class="s2">"ABC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bhexaddr1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"memo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bhexmemo"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.34"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"order_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2345</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"token_id"</span><span class="p">:</span><span class="s2">"ABC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bhexaddr1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"memo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bhexmemo"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12.34"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>HTTP Request：</p>
+
+<p><code>POST /v1/withdrawal/orders</code></p>
+
+<p>请求参数：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>响应结果：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>详情见返回类型表</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>string</td>
+<td>返回内容；失败时为错误信息</td>
+</tr>
+<tr>
+<td>data</td>
+<td>[]order</td>
+<td>待处理提现订单列表</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>int64</td>
+<td>订单id</td>
+</tr>
+<tr>
+<td>token_id</td>
+<td>string</td>
+<td>提现币种</td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>提现给那个地址</td>
+</tr>
+<tr>
+<td>memo</td>
+<td>string</td>
+<td>memo标记</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>提现金额</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+当有用户充值时，调用此接口，为保证充值可靠性，充值需要逐笔执行，超过1条的话可以多次调用此接口。客户端必须保证充币的真实可靠，因客户端通知错误充值带来的损失，由客户端执行者承担。
+</aside>
+<h2 id='3366e0610d'>提现处理完成通知</h2>
+<blockquote>
+<p>提现处理完成通知</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
+  -X GET
+  -H <span class="s2">"BWAAS-API-KEY: 123"</span>
+  -H <span class="s2">"BWAAS-API-TIMESTAMP: 1580887996488"</span>
+  -H <span class="s2">"BWAAS-API-SIGNATURE: f321da3"</span>
+  --data <span class="s1">'
+  {
+    "chain":"ABC",
+    "order_id": 1234,
+    "token_id": "ABV",
+    "to": "bhexaddr1",
+    "memo": "bhexmemo",
+    "amount": "12.34",
+    "tx_hash": "0x5f99810a4154379e5b7951419a77250f020be54b78acb9a8747ff8b0ec75769d",
+    "confirm": 100,
+    "block_height": 6581548,
+    "block_time": 1540480255
+  }
+  '</span>
+  https://api.sandbox.bhex.com/v1/notify/withdrawal
+</code></pre><pre class="highlight go"><code></code></pre><pre class="highlight python tab-python"><code></code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>返回结果：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>HTTP Request：</p>
+
+<p><code>POST /v1/notify/withdrawal</code></p>
+
+<p>请求参数：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>是</td>
+<td>那个链</td>
+</tr>
+<tr>
+<td>order_id</td>
+<td>int64</td>
+<td>是</td>
+<td>订单id</td>
+</tr>
+<tr>
+<td>token_id</td>
+<td>string</td>
+<td>是</td>
+<td>提现币种</td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>是</td>
+<td>提现给那个地址</td>
+</tr>
+<tr>
+<td>memo</td>
+<td>string</td>
+<td>是</td>
+<td>memo标记</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>是</td>
+<td>提现金额</td>
+</tr>
+<tr>
+<td>tx_hash</td>
+<td>string</td>
+<td>是</td>
+<td>交易hash</td>
+</tr>
+<tr>
+<td>confirm</td>
+<td>int</td>
+<td>是</td>
+<td>确认数</td>
+</tr>
+<tr>
+<td>block_height</td>
+<td>int</td>
+<td>是</td>
+<td>区块高度</td>
+</tr>
+<tr>
+<td>block_time</td>
+<td>int</td>
+<td>是</td>
+<td>区块时间（秒）</td>
+</tr>
+</tbody></table>
+
+<p>响应结果：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>详情见返回类型表</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>string</td>
+<td>返回内容；失败时为错误信息</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+提币成功（提币交易已被区块链打包并确认执行成功）后调用此接口，为保证提币结果反馈可靠性，每次仅通知一笔提现处理结果。
+客服端负责保证提币执行后才调用此接口
+</aside>
+<h2 id='679af9d4b3'>定期对账</h2>
+<blockquote>
+<p>定期对账</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl
+  -X GET
+  -H <span class="s2">"BWAAS-API-KEY: 123"</span>
+  -H <span class="s2">"BWAAS-API-TIMESTAMP: 1580887996488"</span>
+  -H <span class="s2">"BWAAS-API-SIGNATURE: f321da3"</span>
+  --data <span class="s1">'
+  {
+    "chain":"ABC",
+    "token_id": "ABV",
+    "total_deposit_amount": "100000.567",
+    "total_withdrawal_amount": "10000",
+    "last_block_height": 100000
+  }
+  '</span>
+  https://api.sandbox.bhex.com/v1/asset/verify
+</code></pre><pre class="highlight go"><code></code></pre><pre class="highlight python tab-python"><code></code></pre><pre class="highlight javascript tab-javascript"><code></code></pre>
+<blockquote>
+<p>返回结果：</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>HTTP Request：</p>
+
+<p><code>POST /v1/asset/verify</code></p>
+
+<p>请求参数：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>必须</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>chain</td>
+<td>string</td>
+<td>是</td>
+<td>那个链</td>
+</tr>
+<tr>
+<td>token_id</td>
+<td>string</td>
+<td>是</td>
+<td>提现币种</td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>是</td>
+<td>提现给那个地址</td>
+</tr>
+<tr>
+<td>total_deposit_amount</td>
+<td>string</td>
+<td>是</td>
+<td>总充值金额</td>
+</tr>
+<tr>
+<td>total_withdrawal_amount</td>
+<td>string</td>
+<td>是</td>
+<td>总提现金额</td>
+</tr>
+<tr>
+<td>last_block_height</td>
+<td>int</td>
+<td>是</td>
+<td>对账最高区块高度</td>
+</tr>
+</tbody></table>
+
+<p>响应结果：</p>
+
+<table><thead>
+<tr>
+<th>参数</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code</td>
+<td>int</td>
+<td>详情见返回类型表</td>
+</tr>
+<tr>
+<td>msg</td>
+<td>string</td>
+<td>返回内容；失败时为错误信息</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">
+定期进行资产对账，客服端定期（每小时或者每天进行对账，客户端根据链的出块时间，交易数量合理确定）向服务端反馈特定链上资产的充提情况（截止到asset_info中指定的区块高度），如果有未处理完成的提现订单，建议处理完成后进行对账。当服务端发现客户端反馈的资产信息与服务端不一致，将返回错误，并暂停该币种的充值提现。
+</aside>
 
       </div>
       <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="golang">golang</a>
+          </div>
       </div>
     </div>
   </body>

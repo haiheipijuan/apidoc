@@ -35,14 +35,14 @@ BLUEHELIX BAAS 提供REST风格的API（HTTPS + JSON)，方便BHOP客户自助�
 代币总量| 100亿
 IP地址 | 100.100.100.100 （用作IP白名单限制）
 
-## 客户端代码示例
-提供五种编程语言（Python, JavaScript, Golang, JAVA, PHP)的用户端代码供用户使用 [https://github.com/bhexopen/thridparty-chain/clients/] (https://github.com/bhexopen/thridparty-chain/clients/)。
+<!-- ## 客户端代码示例
+提供编程语言（Python, JavaScript, Golang, JAVA, PHP)的用户端代码供用户使用 [https://github.com/bhexopen/thridparty-chain/clients/] (https://github.com/bhexopen/thridparty-chain/clients/)。 -->
 
 # API签名认证
 
 ## 域名
-- 测试环境：https://api.sandbox.bhex.com
-- 正式环境：https://api.baas.bhex.com
+- 测试环境：https://sandbox.bluehelix.com
+- 正式环境：https://baas.bluehelix.com
 
 ## HTTP方法
 GET POST
@@ -56,7 +56,7 @@ GET POST
 
 METHOD    | URL | TIMESTAMP
 -----------|-----------------------|----------------------
-POST |    https://api.sandbox.bhex.com/v1/test                   | 1580887996488
+POST |    https://sandbox.bluehelix.com/api/v1/test                   | 1580887996488
 
 参数见右：
 
@@ -69,7 +69,7 @@ POST |    https://api.sandbox.bhex.com/v1/test                   | 1580887996488
   "block_height": 1000000
 }
 ```
-在进行签名之前，需要对请求参数，按照key的首字母进行排序，得到如下数据： `POST|/v1/test/|1580887996488|amount=100.0543&block_height=1000000&side=1&token_id=ABC&tx_hash=0x1234567890`
+在进行签名之前，需要对请求参数，按照key的首字母进行排序，得到如下数据： `POST|/api/v1/test/|1580887996488|amount=100.0543&block_height=1000000&side=1&token_id=ABC&tx_hash=0x1234567890`
 
 使用您本地生成的 private_key（私钥），对数据进行ED25519签名，并对二进制结果进行 Hex 编码, 得到最终签名signature。
 
@@ -92,7 +92,7 @@ curl
   -H "BWAAS-API-KEY: 123"
   -H "BWAAS-API-TIMESTAMP: 1580887996488"
   -H "BWAAS-API-SIGNATURE: f321da3"
-  https://api.sandbox.bhex.com/v1/address/count/unused
+  https://sandbox.bluehelix.com/api/v1/address/count/unused
 ?chain=ABC
 ```
 
@@ -157,7 +157,7 @@ curl
       ]
     }
   '
-  https://api.sandbox.bhex.com/v1/address/add
+  https://sandbox.bluehelix.com/api/v1/address/add
 ```
 
 ```golang
@@ -227,7 +227,7 @@ curl
         "block_time": 1234
     }
   '
-  https://api.sandbox.bhex.com/v1/notify/deposit
+  https://sandbox.bluehelix.com/api/v1/notify/deposit
 ```
 
 ```golang
@@ -290,7 +290,7 @@ curl
   -H "BWAAS-API-KEY: 123"
   -H "BWAAS-API-TIMESTAMP: 1580887996488"
   -H "BWAAS-API-SIGNATURE: f321da3"
-  https://api.sandbox.bhex.com/v1/withdrawal/orders
+  https://sandbox.bluehelix.com/api/v1/withdrawal/orders
 ```
 
 ```golang
@@ -385,7 +385,7 @@ curl
     "block_time": 1540480255
   }
   '
-  https://api.sandbox.bhex.com/v1/notify/withdrawal
+  https://sandbox.bluehelix.com/api/v1/notify/withdrawal
 ```
 
 ```golang
@@ -458,7 +458,7 @@ curl
     "last_block_height": 100000
   }
   '
-  https://api.sandbox.bhex.com/v1/asset/verify
+  https://sandbox.bluehelix.com/api/v1/asset/verify
 ```
 
 ```golang
@@ -513,3 +513,16 @@ msg | string | 返回内容；失败时为错误信息
 返回值 | 类型| 说明
 -----------|-----------|-----------
 10000 | SUCCESS| 成功
+10001 | INVALID_SIGN| 无效签名
+10002 | INVALID_APIKEY | 无效的api_key
+10004 | INVALID_CHAIN | 无效的chain
+10005 | INVALID_PARAMS | 无效的参数
+10006 | INVALID_TO_ADDRESS | 无效的充币地址
+10007 | INVALID_ORDER_ID | 无效的订单id
+10008 | INVALID_WITHDARWAL_INFO | 无效的提现信息
+10009 | REPEAT_DEPOSIT | 重复充值
+10010 | INVALID_TOKEN_ID | 无效的token_id
+10011 | ASSET_VERIFY_FAILED| 资产校验失败
+10012 | PAUSE_DEPOSIT| 充值暂停
+10013 | PAUSE_WITHDRAWAL| 提现暂停
+10014 | NEED_MEMO | 需要memo

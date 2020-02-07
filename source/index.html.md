@@ -35,8 +35,8 @@ BLUEHELIX BAAS 提供REST风格的API（HTTPS + JSON)，方便BHOP客户自助�
 代币总量| 100亿
 IP地址 | 100.100.100.100 （用作IP白名单限制）
 
-<!-- ## 客户端代码示例
-提供编程语言（Python, JavaScript, Golang, JAVA, PHP)的用户端代码供用户使用 [https://github.com/bhexopen/thridparty-chain/clients/] (https://github.com/bhexopen/thridparty-chain/clients/)。 -->
+## 客户端代码示例
+提供编程语言（Python, JavaScript, Golang, JAVA, PHP)的用户端代码供用户使用 [https://github.com/bhexopen/baas/clients] (https://github.com/bhexopen/baas/clients)。
 
 # API签名认证
 
